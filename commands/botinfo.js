@@ -10,6 +10,7 @@ module.exports.run = async (bot,message,args) => {
         .addField("My username", `${bot.user.username} #${bot.user.discriminator}`)
         .addField("My ID", bot.user.id)
         .addField("I came alive at", bot.user.createdAt);
+        
     message.channel.send(embed);
     return;
 }

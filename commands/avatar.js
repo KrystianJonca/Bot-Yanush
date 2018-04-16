@@ -1,5 +1,3 @@
-const otherSettings = require('../config/other-settings.json');
-
 module.exports.run = async (bot,message,args) => {
     let msg = await message.channel.send("Loading avatar...");
 
@@ -9,8 +7,6 @@ module.exports.run = async (bot,message,args) => {
             name: "avatar.png"
         }
     ]})
-    
-    message.react(otherSettings.reaction_of_the_command_execution);
 
     msg.delete();
     return;
