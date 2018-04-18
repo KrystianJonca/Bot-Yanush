@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const React = require("../modules/reacting.js");
 
 module.exports.run = async (bot,message,args) => {
     let embed = new Discord.RichEmbed()
@@ -10,8 +11,9 @@ module.exports.run = async (bot,message,args) => {
         .addField("My username", `${bot.user.username} #${bot.user.discriminator}`)
         .addField("My ID", bot.user.id)
         .addField("I came alive at", bot.user.createdAt);
-        
-    message.channel.send(embed);
+    
+    
+    React.sendReact(true,message,embed,'send');
     return;
 }
 module.exports.config = {

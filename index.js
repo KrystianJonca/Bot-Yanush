@@ -1,13 +1,16 @@
 const Discord = require('discord.js');
 const fs = require("fs");
+const React = require("./modules/reacting.js");
 
 const botSettings = require('./config/bot-settings.json');
 const otherSettings = require('./config/other-settings.json');
 const aiSettings = require('./config/ai-settings.json');
+const activity = require('./config/activity.json');
 
 const bot = new Discord.Client();
 const coolDownSec = otherSettings.commands_cooldown;
 const coolDown = new Set();
+
 bot.commands = new Discord.Collection();
 
 
@@ -35,7 +38,7 @@ fs.readdir('./commands/',(err,files) =>{
 
 bot.on('ready',() =>{
     bot.user.setUsername(botSettings.bot_username);
-    bot.user.setAvatar(botSettings.avatar_location);
+    //bot.user.setAvatar(botSettings.avatar_location);
 
     randomActivity();
 
@@ -65,12 +68,12 @@ bot.on('message',async message =>{
 
     if (!command.startsWith(prefix)) return;
 
-    if (args[0] === "--info") {
+    if (args[0] === "--info") {      
         commandInfo(command,message,prefix);
         return;
     }
     if (coolDown.has(sender.id)) {
-        message.reply(`You have to wait ${coolDownSec} seconds between commands`);
+        React.sendReact(false,message,`You have to wait ${coolDownSec} seconds between commands`,'reply');
         return;
     }
     if (cmd){
@@ -95,7 +98,7 @@ bot.on('message',async message =>{
 //AI section
 bot.on('message',async message =>{
     if (aiSettings.auto_spam_mute) {
-        
+        //TODO
     }    
     if (aiSettings.auto_caps_lock_alert) {
         if (message.author.bot) return;
@@ -104,7 +107,8 @@ bot.on('message',async message =>{
 
         if (message.content === message.content.toUpperCase()) {
             message.delete();
-            return message.reply("Turn off caps!");
+            message.reply("Turn off caps!");
+            return;
         }
     }
 });
@@ -123,6 +127,8 @@ function commandInfo(cmd,message,prefix){
                 if (cmds.config.name.indexOf(cmd.slice(prefix.length)) != -1) {
                     commandExist = true;
 
+                    React.sendReact(true,message);
+
                     let embed = new Discord.RichEmbed()
                         .setAuthor("Command")
                         .setDescription(`\`${cmds.config.name.join("/")}\`This command must starts with \`${prefix}\``)
@@ -138,6 +144,8 @@ function commandInfo(cmd,message,prefix){
             }
         });
         if (!commandExist) {
+            React.sendReact(false,message);
+            
             message.reply(`This command does not exist! Type \`${prefix}help\` to get the avaiable command list!`);
             return;   
         }
@@ -149,9 +157,9 @@ function randomActivity(){
 
     clearTimeout(timer);
 
-    let interval = otherSettings.activity_change_interval;
+    let interval = activity.activity_change_interval;
 
-    let activityArray = otherSettings.activity;
+    let activityArray = activity.activity;
 
     let activityNumber = Math.floor(Math.random()*activityArray.length);
 

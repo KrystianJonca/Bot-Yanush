@@ -1,11 +1,12 @@
 const roles = require('../config/roles.json');
+const React = require("../modules/reacting.js");
 
 module.exports.run = async (bot,message,args) => {
     let roleMsg = args[0];
 
     let roles = roles.roles;
 
-    if (otherSettings.roles_for_all.indexOf(roleMsg) == -1) return message.reply("Undefined role type `roles` to get avaiable roles list!");
+    if (roles.indexOf(roleMsg) == -1) return React.sendReact(false,message,"Undefined role type `roles` to get avaiable roles list!","reply");
 
     for (let index = 0; index < roles.length; index++) {
         if (roles[index] === roleMsg) {
@@ -16,12 +17,12 @@ module.exports.run = async (bot,message,args) => {
                 });
             }
             if (message.member.roles.has(role.id)){
-                return message.reply(`You was removed from this role! If you want come back type again \`${message.content.toLowerCase()}\``);
+                return React.sendReact(true,message,`You was removed from this role! If you want come back type again \`${message.content.toLowerCase()}\``,"reply");
             }
 
             await message.member.addRole(role);
 
-            return message.reply(`Rolle added! If you want leave type again \`${message.content.toLowerCase()}\``);
+            return React.sendReact(true,message,`Rolle added! If you want leave type again \`${message.content.toLowerCase()}\``,"reply");
         }
     }
     return;

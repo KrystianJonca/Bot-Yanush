@@ -1,11 +1,12 @@
 const Discord = require('discord.js');
 const fs = require("fs");
+const React = require("../modules/reacting.js");
 
 module.exports.run = async (bot,message,args) => {
     let prefix = args[0];
 
-    if (!message.member.hasPermission("MANAGE_SERVER")) return message.reply("You don't have require permission!");
-    if (!prefix) return message.reply("You must give a prefix to set");
+    if (!message.member.hasPermission("MANAGE_SERVER")) return React.sendReact(false,message,"You don't have require permission!","reply");
+    if (!prefix) return React.sendReact(false,message,"You must give a prefix to set","reply");
 
     let prefixes = JSON.parse(fs.readFileSync("./database/prefixes.json","utf8"));
     
@@ -22,7 +23,7 @@ module.exports.run = async (bot,message,args) => {
         .setDescription(`Set to ${prefix}`)
         .setColor("#1E88E5");
 
-    message.channel.send(embed);
+    React.sendReact(true,message,embed,"send");
     return;
 
 }

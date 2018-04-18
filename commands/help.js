@@ -1,8 +1,9 @@
 const fs = require('fs');
 const characterLimit = 2000;
+const React = require("../modules/reacting.js");
 
 module.exports.run = async (bot,message,args) => {
-    message.reply("I have just sent you a message with available commands!");
+    React.sendReact(true,message,"I have just sent you a message with available commands!","reply");
 
     let helpMsg = "Hello! I have a list of available commands for you that you asked for :slight_smile: :wink: \n";
 

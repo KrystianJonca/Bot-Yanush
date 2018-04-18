@@ -1,3 +1,5 @@
+const React = require("../modules/reacting.js");
+
 module.exports.run = async (bot,message,args) => {
     let msg = await message.channel.send("Loading avatar...");
 
@@ -7,6 +9,8 @@ module.exports.run = async (bot,message,args) => {
             name: "avatar.png"
         }
     ]})
+
+    React.sendReact(true,message);
 
     msg.delete();
     return;

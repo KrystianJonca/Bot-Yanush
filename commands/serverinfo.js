@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const fs = require("fs");
+const React = require("../modules/reacting.js");
 
 module.exports.run = async (bot,message,args) => {
     let prefixes = JSON.parse(fs.readFileSync("./database/prefixes.json","utf8"));
@@ -16,7 +17,7 @@ module.exports.run = async (bot,message,args) => {
         .addField("You Joined", message.member.joinedAt)
         .addField("Total members", message.guild.memberCount);
 
-    message.channel.send(embed);
+    React.sendReact(true,message,embed,"send");
     return;
 }
 module.exports.config = {

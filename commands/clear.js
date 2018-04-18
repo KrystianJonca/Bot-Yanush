@@ -1,17 +1,17 @@
 const Discord = require('discord.js');
+const React = require("../modules/reacting.js");
 
 module.exports.run = async (bot,message,args) => {
     let messageToDelete = args[0];
 
-    if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("You don't have require permission!");
-    if(!messageToDelete) return message.send("You must enter the number of messages to delete!");
+    if (!message.member.hasPermission("MANAGE_MESSAGES")) return React.sendReact(false,message,"You don't have require permission!","reply");
+    if (!messageToDelete) return React.sendReact(false,message,"You must enter the number of messages to delete!","reply");
     try{
         message.channel.bulkDelete(messageToDelete).then(()=>{
             message.channel.send(`Cleared ${messageToDelete} messages`).then((msg => msg.delete(5000)))
         });
     }catch(err){
         console.error(err);
-        message.channel.send("Sorry, somethink went wrong I can't delete messages")
     }
     return;
 }

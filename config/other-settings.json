@@ -1,15 +1,5 @@
 {
     "incidents_channel_id": 426428250122616842,
     "reports_channel_id": 426400484585242624,  
-    "reaction_of_the_command_execution":"👍",
-    "reaction_of_the_command_not_execution":"👎",
-    "commands_cooldown": 5,  
-    "activity_change_interval":100,
-    "activity":[
-        "Breaks my code",
-        "? No,I am writing in Nodejs",
-        "I have fun with our users",
-        "New incognito tab ( ͡° ͜ʖ ͡°)",
-        "Making money [̲̅$̲̅(̲̅5̲̅)̲̅$̲̅]"
-    ]
+    "commands_cooldown": 5
 }

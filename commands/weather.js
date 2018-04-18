@@ -1,4 +1,7 @@
+const React = require("../modules/reacting.js");
+
 module.exports.run = async (bot,message,args) => {
+    
     let cpuTemp = getRandomInt(30,80);
     let gpuTemp = getRandomInt(20,70);
     let fanSpeed = getRandomInt(1000,2000);
@@ -26,7 +29,7 @@ module.exports.run = async (bot,message,args) => {
 
     msg += `**Fan speed(rpm): ** ${fanSpeed}`;
 
-    return message.channel.send(msg);
+    return React.sendReact(true,message,msg,"send");
 }
 module.exports.config = {
     name: ["weather","temp"],

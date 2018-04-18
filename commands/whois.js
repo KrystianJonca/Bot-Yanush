@@ -1,11 +1,10 @@
 const Discord = require('discord.js');
+const React = require("../modules/reacting.js");
 
 module.exports.run = async (bot,message,args) => {
     let mentionUser = message.guild.member(message.mentions.users.first() || message.mentions.users.get(args[0]));
 
-    if (mentionUser.id === bot.user.id) return message.channel.send("Use `!botinfo`");
-
-    if (!mentionUser) return message.channel.send("You did not specify a user mention or ID!");
+    if (!mentionUser) return React.sendReact(false,message,"You did not specify a user mention or ID!","reply");
 
     let embed = new Discord.RichEmbed()
         .setAuthor(mentionUser.user.username)
@@ -17,7 +16,7 @@ module.exports.run = async (bot,message,args) => {
         .addField("ID", mentionUser.user.id)
         .addField("Created at", mentionUser.user.createdAt);
         
-    return message.channel.send(embed);
+    return React.sendReact(true,message,embed,"reply");
 
 }
 module.exports.config = {

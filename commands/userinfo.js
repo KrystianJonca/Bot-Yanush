@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const React = require("../modules/reacting.js");
 
 module.exports.run = async (bot,message,args) => {
     let embed = new Discord.RichEmbed()
@@ -12,7 +13,7 @@ module.exports.run = async (bot,message,args) => {
         .addField("Roles", message.member.roles.array)        
         .addField("Created at", message.author.createdAt);
         
-    return message.channel.send(embed);
+    return React.sendReact(true,message,embed,"send");
     
 }
 module.exports.config = {
