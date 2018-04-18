@@ -1,2 +1,2 @@
 # DiscordJSBot
-Simple Discord Bot write in Discordjs
+Simple Discord Bot written in Discordjs
