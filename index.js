@@ -63,7 +63,7 @@ bot.on('message',async message =>{
     
     let prefix = prefixes[message.guild.id].prefix;
     
-    let cmd = bot.commands.get(command.slice(prefix.length));
+    let cmd = bot.commands.get(command.slice(prefix.length).toLowerCase());
 
     if (!command.startsWith(prefix)) return;
 

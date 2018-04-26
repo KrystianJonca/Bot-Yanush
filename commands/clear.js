@@ -18,5 +18,5 @@ module.exports.run = async (bot,message,args) => {
 module.exports.config = {
     name: ["clear"],
     args:"<how much message to clear>",
-    description: "Clear message!"
+    description: "Clear messages"
 }

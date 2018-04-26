@@ -34,7 +34,7 @@ module.exports.run = async (bot,message,args) => {
 module.exports.config = {
     name: ["weather","temp"],
     args:"",
-    description: "Set your status to afk (add you to\"afk\" role)"
+    description: "Get weather in my current location ( ͡ᵔ ͜ʖ ͡ᵔ )"
 }
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
