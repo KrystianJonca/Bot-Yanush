@@ -29,10 +29,6 @@ module.exports.run = async (bot,message,args) => {
 }
 module.exports.config = {
     name: ["prefix"],
-    args:"(your prefix)",
-    group:"Random",
-    description: "Set your own prefix!",
-    enabled: true,
-    avaiable_on_other_categories: false
-    
+    args:"<prefix to set>",
+    description: "Set your own prefix!"
 }   

@@ -23,10 +23,12 @@ module.exports.run = async (bot,message,args) => {
         .addField("Kicked User", `${kickUser} with ID ${kickUser.id}`)
         .addField("Kicked By", `${message.author} with ID ${message.author.id}`)
         .addField("Reason", reason)        
-        .addField("Time", message.createdAt)
+        .addField("Kicked at", message.createdAt)
         .addField("Channel", message.channel);
 
-    bot.channels.get(otherSettings.incidents_channel_id).send(embed);
+    let incidentsChannel = message.guild.channels.find('name',"incidents");
+    incidentsChannel.send(embed);
+    
     message.guild.member(kickUser).kick(reason);
     React.sendReact(true,message,"User kicked!","send");
 
@@ -34,9 +36,6 @@ module.exports.run = async (bot,message,args) => {
 }
 module.exports.config = {
     name: ["kick"],
-    args:"@user (Reason)",
-    group:"For Admins",
-    description: "Kick a user(permission require)",
-    enabled: true,
-    avaiable_on_other_categories: true    
+    args:"@user <reason>",
+    description: "Kick a user(permission require)"   
 }

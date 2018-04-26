@@ -29,16 +29,15 @@ module.exports.run = async (bot,message,args) => {
 
     await muteUser.removeRole(role);
 
-    bot.channels.get(otherSettings.incidents_channel_id).send(embed);
+    let incidentsChannel = message.guild.channels.find('name',"incidents")
+    incidentsChannel.send(embed);
+    
     React.sendReact(true,message,"User Unmuted!","send");
 
     return;
 }
 module.exports.config = {
     name: ["unmute"],
-    args:"@user (Reason)",
-    group:"For Admins",
-    description: "Mute a user(permission require)",
-    enabled: true,
-    avaiable_on_other_categories: true    
+    args:"@user <reason>",
+    description: "Mute a user(permission require)"
 }

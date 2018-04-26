@@ -19,8 +19,6 @@ module.exports.run = async (bot,message,args) => {
 module.exports.config = {
     name: ["botinfo"],
     args:"",
-    group:"Info",
-    description: "A few facts about me!",
-    enabled: true,
-    avaiable_on_other_categories: false
+    description: "A few facts about me!"
+
 }

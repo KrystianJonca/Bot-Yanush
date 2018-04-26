@@ -6,13 +6,14 @@ const botSettings = require('./config/bot-settings.json');
 const otherSettings = require('./config/other-settings.json');
 const aiSettings = require('./config/ai-settings.json');
 const activity = require('./config/activity.json');
+const token = require('./config/token.json');
 
 const bot = new Discord.Client();
+
 const coolDownSec = otherSettings.commands_cooldown;
 const coolDown = new Set();
 
 bot.commands = new Discord.Collection();
-
 
 fs.readdir('./commands/',(err,files) =>{
     if (err) console.error(err);
@@ -28,10 +29,9 @@ fs.readdir('./commands/',(err,files) =>{
     jsfiles.forEach((f,i) => {
         let cmds = require(`./commands/${f}`);
         console.log(`${i+1}: ${f} loaded!`);
-        if (cmds.config.enabled) {
-            for (let i = 0; i < cmds.config.name.length; i++) {
-                bot.commands.set(cmds.config.name[i],cmds,cmds.config.args);
-            }
+
+        for (let i = 0; i < cmds.config.name.length; i++) {
+            bot.commands.set(cmds.config.name[i],cmds,cmds.config.args);
         }
     });
 });
@@ -41,7 +41,6 @@ bot.on('ready',() =>{
     //bot.user.setAvatar(botSettings.avatar_location);
 
     randomActivity();
-
     console.log('Bot is ready to use!');
 });
 bot.on('message',async message =>{
@@ -63,7 +62,7 @@ bot.on('message',async message =>{
     }
     
     let prefix = prefixes[message.guild.id].prefix;
-
+    
     let cmd = bot.commands.get(command.slice(prefix.length));
 
     if (!command.startsWith(prefix)) return;
@@ -91,9 +90,6 @@ bot.on('message',async message =>{
         clearTimeout(timer);
         coolDown.delete(sender.id);
     },coolDownSec*1000)
-
-    
-
 });
 //AI section
 bot.on('message',async message =>{
@@ -123,30 +119,26 @@ function commandInfo(cmd,message,prefix){
 
         jsfiles.forEach((f,i) => {
             let cmds = require(`./commands/${f}`);
-            if (cmds.config.enabled) {
-                if (cmds.config.name.indexOf(cmd.slice(prefix.length)) != -1) {
-                    commandExist = true;
+            
+            if (cmds.config.name.indexOf(cmd.slice(prefix.length)) != -1) {
+                commandExist = true;
 
-                    React.sendReact(true,message);
+                React.sendReact(true,message);
 
-                    let embed = new Discord.RichEmbed()
-                        .setAuthor("Command")
-                        .setDescription(`\`${cmds.config.name.join("/")}\`This command must starts with \`${prefix}\``)
-                        .setColor("#90CAF9")
+                let embed = new Discord.RichEmbed()
+                    .setAuthor("Command")
+                    .setDescription(`\`${cmds.config.name.join("/")}\`This command must starts with \`${prefix}\``)
+                    .setColor("#90CAF9")
 
-                        .addField("Usage", `\`${prefix}${cmds.config.name.join("/")} ${cmds.config.args}\``)
-                        .addField("Group", `${cmds.config.group}`)
-                        .addField("Description", `${cmds.config.description}`)                                                    
-                        .addField("Avaiable on all categories",cmds.config.avaiable_on_other_categories ? "Yes":"No");   
+                    .addField("Usage", `\`${prefix}${cmds.config.name.join("/")} ${cmds.config.args}\``)
+                    .addField("Description", `${cmds.config.description}`)                                                    
       
-                    message.channel.send(embed);                
-                }
+                message.channel.send(embed);                
             }
+            
         });
         if (!commandExist) {
-            React.sendReact(false,message);
-            
-            message.reply(`This command does not exist! Type \`${prefix}help\` to get the avaiable command list!`);
+            React.sendReact(false,message,`This command does not exist! Type \`${prefix}help\` to get the avaiable command list!`,'reply');
             return;   
         }
     });
@@ -158,15 +150,13 @@ function randomActivity(){
     clearTimeout(timer);
 
     let interval = activity.activity_change_interval;
-
     let activityArray = activity.activity;
-
     let activityNumber = Math.floor(Math.random()*activityArray.length);
 
     bot.user.setStatus('Online');
     bot.user.setActivity(activityArray[activityNumber]);
-    console.log(activityArray[activityNumber]);
+
     timer = setTimeout(randomActivity, interval * 1000);
 }
 
-bot.login(botSettings.token);
+bot.login(token.token);

@@ -22,8 +22,5 @@ module.exports.run = async (bot,message,args) => {
 module.exports.config = {
     name: ["whois"],
     args:"@user",
-    group:"Info",
-    description: "Mention user info",
-    enabled: true,
-    avaiable_on_other_categories: false    
+    description: "Mention user info" 
 }   

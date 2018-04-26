@@ -8,6 +8,7 @@ const React = require("../modules/reacting.js");
 //
 
 module.exports.run = async (bot,message,args) => {
+    return React.sendReact(false,message,"THIS COMMAND HAS ERROR, I WILL FIX IT IN THE NEAREST TIME","reply");
     let muteUser = message.guild.member(message.mentions.users.first() || message.mentions.users.get(args[0]));
     let role = message.guild.roles.find(r => r.name === "Muted");
     let muteTime = args[1];
@@ -48,14 +49,16 @@ module.exports.run = async (bot,message,args) => {
         .addField("Muted By", `${message.author} with ID ${message.author.id}`)
         .addField("Mute time", `${muteTime == 0 ? "An indefinite period of time" : muteTime+" sec"}`)                
         .addField("Reason", reason)        
-        .addField("Time", message.createdAt)
+        .addField("Muted at", message.createdAt)
         .addField("Channel", message.channel);
 
     if (muteUser.roles.has(role.id)) return React.sendReact(false,message,"This user is already muted!","send");
 
     await muteUser.addRole(role);
 
-    bot.channels.get(otherSettings.incidents_channel_id).send(embed);
+    let incidentsChannel = message.guild.channels.find('name',"incidents");
+    incidentsChannel.send(embed);
+    
     React.sendReact(true,message,`User Muted! On ${muteTime == 0 ? "an indefinite period of time" : muteTime+" min"}`,"send");
 
     if (muteTime == 0) return;
@@ -71,16 +74,13 @@ module.exports.run = async (bot,message,args) => {
 
             muteUser.removeRole(role);
 
-            return bot.channels.get(otherSettings.incidents_channel_id).send(embed);        
+            return incidentsChannel.send(embed);      
         },muteTime * 60000);
     };
     return;
 }
 module.exports.config = {
     name: ["mute"],
-    args:"@user (time in sec) (Reason)",
-    group:"For Admins",
-    description: "Mute a user(permission require)",
-    enabled: true,
-    avaiable_on_other_categories: true    
+    args:"@user <time in sec> <reason>",
+    description: "Mute a user(permission require)"  
 }

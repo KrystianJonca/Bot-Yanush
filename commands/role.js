@@ -19,7 +19,6 @@ module.exports.run = async (bot,message,args) => {
             if (message.member.roles.has(role.id)){
                 return React.sendReact(true,message,`You was removed from this role! If you want come back type again \`${message.content.toLowerCase()}\``,"reply");
             }
-
             await message.member.addRole(role);
 
             return React.sendReact(true,message,`Rolle added! If you want leave type again \`${message.content.toLowerCase()}\``,"reply");
@@ -29,9 +28,6 @@ module.exports.run = async (bot,message,args) => {
 }
 module.exports.config = {
     name: ["role"],
-    args:"(role)",
-    group:"Roles",
-    description: "Set your role!",
-    enabled: true,
-    avaiable_on_other_categories: true    
+    args:"<role>",
+    description: "Set your role!", 
 }

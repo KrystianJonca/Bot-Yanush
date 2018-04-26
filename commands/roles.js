@@ -25,8 +25,5 @@ module.exports.run = async (bot,message,args) => {
 module.exports.config = {
     name: ["roles"],
     args:"",
-    group:"Roles",
-    description: "Avaiable roles list",
-    enabled: true,
-    avaiable_on_other_categories: true    
+    description: "Avaiable roles list"
 }

@@ -17,9 +17,6 @@ module.exports.run = async (bot,message,args) => {
 }
 module.exports.config = {
     name: ["clear"],
-    args:"(how much message to clear)",
-    group:"Random",
-    description: "Clear message!",
-    enabled: true,
-    avaiable_on_other_categories: false
+    args:"<how much message to clear>",
+    description: "Clear message!"
 }

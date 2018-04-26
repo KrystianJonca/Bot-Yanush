@@ -1,4 +1,4 @@
-const React = require("../modules/reacting.js");
+const React = require('../modules/reacting.js');
 
 module.exports.run = async (bot,message,args) => {
     let msg = await message.channel.send("Loading avatar...");
@@ -11,7 +11,7 @@ module.exports.run = async (bot,message,args) => {
     ]})
 
     React.sendReact(true,message);
-
+    
     msg.delete();
     return;
 
@@ -19,8 +19,5 @@ module.exports.run = async (bot,message,args) => {
 module.exports.config = {
     name: ["avatar"],
     args:"",
-    group:"Random",
-    description: "See how beautiful your avatar is!",
-    enabled: true,
-    avaiable_on_other_categories: true    
+    description: "See how beautiful your avatar is!"
 }

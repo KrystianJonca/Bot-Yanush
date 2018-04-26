@@ -15,9 +15,6 @@ module.exports.run = async (bot,message,args) => {
 }
 module.exports.config = {
     name: ["question","8ball"],
-    args:"(question content)",
-    group:"Random",
-    description: "Ask me a question",
-    enabled: true,
-    avaiable_on_other_categories: false
+    args:"<question content>",
+    description: "Ask me a question"
 }   

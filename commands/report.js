@@ -23,16 +23,15 @@ module.exports.run = async (bot,message,args) => {
         .addField("Time", message.createdAt)
         .addField("Channel", message.channel);
 
-    bot.channels.get(otherSettings.reports_channel_id).send(embed);
+    let reportsChannel = message.guild.channels.find('name',"reports")
+    reportsChannel.send(embed);
+
     React.sendReact(true,message,"Report sent successfully!","send");            
 
     return;
 }
 module.exports.config = {
     name: ["report"],
-    args:"@user [Reason]",
-    group:"Random",
-    description: "Report a user(permission require)",
-    enabled: true,
-    avaiable_on_other_categories: true
+    args:"@user <reason>",
+    description: "Report a user(permission require)"
 }

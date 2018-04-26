@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const otherSettings = require('../config/other-settings.json');
-const React = require("../modules/reacting.js");
+const React = require('../modules/reacting.js');
 
 module.exports.run = async (bot,message,args) => {
     let banUser = message.guild.member(message.mentions.users.first() || message.mentions.users.get(args[0]));
@@ -19,13 +19,15 @@ module.exports.run = async (bot,message,args) => {
         .setColor("#ff0000")
         .setThumbnail(banUser.user.displayAvatarURL)
 
-        .addField("Baned User", `${banUser} with ID ${banUser.id}`)
-        .addField("Baned By", `${message.author} with ID ${message.author.id}`)
+        .addField("Banned User", `${banUser} with ID ${banUser.id}`)
+        .addField("Banned By", `${message.author} with ID ${message.author.id}`)
         .addField("Reason", reason)
-        .addField("Time", message.createdAt)
+        .addField("Banned at", message.createdAt)
         .addField("Channel", message.channel);
 
-    bot.channels.get(otherSettings.incidents_channel_id).send(embed);
+    let incidentsChannel = message.guild.channels.find('name',"incidents")
+    incidentsChannel.send(embed);
+    
     message.guild.member(banUser).ban(reason);
     React.sendReact(true,message,"User banned!","send");
     
@@ -33,9 +35,7 @@ module.exports.run = async (bot,message,args) => {
 }
 module.exports.config = {
     name: ["ban"],
-    args:"@user (Reason)",
-    group:"For Admins",
-    description: "Ban a user(permission require)",
-    enabled: true,
-    avaiable_on_other_categories: true    
+    args:"@user <reason>",
+    description: "Ban a user(permission require)"
+
 }

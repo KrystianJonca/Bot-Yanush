@@ -19,8 +19,7 @@ module.exports.run = async (bot,message,args) => {
         jsfiles.forEach((f,i) => {
             let cmds = require(`./${f}`);
             
-            helpMsg += `**${i+1}:** \`!${cmds.config.name} ${cmds.config.args}\` | **Description:**  ${cmds.config.description}. | **Status:** ${cmds.config.enabled ? "Enable":"Disable"} | **Group:** ${cmds.config.group}\n`;                
-            
+            helpMsg += `**${i+1}:** \`!${cmds.config.name} ${cmds.config.args}\` | **Description:**  ${cmds.config.description} \n`;                
         }); 
         if (helpMsg.length >= characterLimit) {
             message.author.send(helpMsg,{split:[maxLength = characterLimit, char = '\n']});
@@ -34,8 +33,5 @@ module.exports.run = async (bot,message,args) => {
 module.exports.config = {
     name: ["help","commands","info"],
     args:"",
-    group:"Info",
-    description: "Get a avaiable command list!",
-    enabled: true,
-    avaiable_on_other_categories: false    
+    description: "Get a avaiable command list!" 
 }   

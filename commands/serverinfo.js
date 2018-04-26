@@ -23,9 +23,5 @@ module.exports.run = async (bot,message,args) => {
 module.exports.config = {
     name: ["serverinfo"],
     args:"",
-    group:"Info",
     description: "A few facts about our server",
-    enabled: true,
-    avaiable_on_other_categories: false    
-
 }

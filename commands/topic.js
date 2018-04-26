@@ -110,9 +110,6 @@ module.exports.run = async (bot,message,args) => {
 }
 module.exports.config = {
     name: ["topic"],
-    args:"",
-    group:"Forum",
-    description: "",
-    enabled: true,
-    avaiable_on_other_categories: false
+    args:"<topic content>",
+    description: "Create new topic",
 }   
