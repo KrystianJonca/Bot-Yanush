@@ -1,5 +1,4 @@
 {
-    "incidents_channel_id": 426428250122616842,
-    "reports_channel_id": 426400484585242624,  
-    "commands_cooldown": 5
+    "commands_cooldown": 5,
+    "topic_time_to_explain": 5
 }
