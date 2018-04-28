@@ -1,7 +1,7 @@
 const answers = require("../config/answers.json");
 const React = require("../modules/reacting.js");
 
-module.exports.run = async (bot,message,args) => {
+module.exports.run = async (bot,message,args,prefix) => {
     let question = args.join(" ");
 
     if (!question) return React.sendReact(false,message,"You did not ask me a question!","reply");

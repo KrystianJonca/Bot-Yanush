@@ -4,7 +4,7 @@ const fs = require('fs');
 
 let warns = JSON.parse(fs.readFileSync("./database/warnings.json", "utf8"));
 
-module.exports.run = async (bot,message,args) => {
+module.exports.run = async (bot,message,args,prefix) => {
     let warningUser = message.guild.member(message.mentions.users.first() || message.mentions.users.get(args[0]));
     let reason = args.join(" ").slice(22);
     

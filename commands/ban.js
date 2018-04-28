@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const otherSettings = require('../config/other-settings.json');
 const React = require('../modules/reacting.js');
 
-module.exports.run = async (bot,message,args) => {
+module.exports.run = async (bot,message,args,prefix) => {
     let banUser = message.guild.member(message.mentions.users.first() || message.mentions.users.get(args[0]));
     let reason = args.join(" ").slice(22);
 
@@ -15,7 +15,7 @@ module.exports.run = async (bot,message,args) => {
 
     let embed = new Discord.RichEmbed()
         .setAuthor("Ban")
-        .setDescription("ban a user")
+        .setDescription("Ban a user")
         .setColor("#ff0000")
         .setThumbnail(banUser.user.displayAvatarURL)
 
@@ -25,7 +25,7 @@ module.exports.run = async (bot,message,args) => {
         .addField("Banned at", message.createdAt)
         .addField("Channel", message.channel);
 
-    let incidentsChannel = message.guild.channels.find('name',"incidents")
+    let incidentsChannel = message.guild.channels.find('name',"incidents");
     incidentsChannel.send(embed);
     
     message.guild.member(banUser).ban(reason);

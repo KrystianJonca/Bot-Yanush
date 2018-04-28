@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const React = require("../modules/reacting.js");
 
-module.exports.run = async (bot,message,args) => {
+module.exports.run = async (bot,message,args,prefix) => {
     let embed = new Discord.RichEmbed()
         .setAuthor(message.author.username)
         .setDescription("User's info")

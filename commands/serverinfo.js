@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const fs = require("fs");
 const React = require("../modules/reacting.js");
 
-module.exports.run = async (bot,message,args) => {
+module.exports.run = async (bot,message,args,prefix) => {
     let prefixes = JSON.parse(fs.readFileSync("./database/prefixes.json","utf8"));
 
     let embed = new Discord.RichEmbed()

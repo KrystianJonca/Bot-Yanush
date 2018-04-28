@@ -1,17 +1,19 @@
-const forumSettings = require('../config/forum-settings.json');
+const otherSettings = require('../config/other-settings.json');
 const Discord = require('discord.js');
 const React = require("../modules/reacting.js");
 
-let topicAuthor;
+let timeToExplain = otherSettings.topic_time_to_explain * 60;
 let canAddTopic = true;
-let timeToExplain = forumSettings.topic_time_to_explain * 60;
 let topicMsg = 0;
 let topicTime = 0;
 
-module.exports.run = async (bot,message,args) => {
-    if(message.channel.perentID !== forumSettings.forum_category_id) return React.sendReact(false,message,"You can only add topic on specific category!","reply");
+module.exports.run = async (bot,message,args,prefix) => {
+    // let topicChannel = message.guild.channels.find('name','topics');
+    // console.log(topicChannel.parentID,message.channel.perentID);    **TODO**
+    // if(message.channel.perentID !== topicChannel.parentID) return React.sendReact(false,message,"You can only add topic on specific category!","reply");
 
     let topic = args.join(" ");
+    let topicAuthor = message.author;
     
     if (!topic) return React.sendReact(false,message,"You must give a topic!","reply");
 
@@ -20,7 +22,7 @@ module.exports.run = async (bot,message,args) => {
             endTopic();
             break;
         case "-explain":
-            endTopic();
+            explain();
             break;
         default:
             newTopic();
@@ -46,9 +48,9 @@ module.exports.run = async (bot,message,args) => {
 
         bot.on('message',async msg =>{
             if (msg.channel !== message.channel) return;
-            if (topicAuthor === msg.author.id) return;
+            if (topicAuthor.id === msg.author.id || bot.id === msg.author.id) return;
             topicMsg += 1;
-            timeToExplain += timeToExplain/4;
+            timeToExplain += 0.5;
         });
         
         let interval = setInterval(()=>{
@@ -79,8 +81,8 @@ module.exports.run = async (bot,message,args) => {
         return;
     }
     function endTopic(){
+        if (canAddTopic) return React.sendReact(false,message,"You can't end not started topic!","reply");        
         if (topicAuthor !== message.author || !message.member.hasPermission("KICK_MEMBERS")) return React.sendReact(false,message,"Only topic author and admins can end a topic!","reply");        
-        if (canAddTopic) return React.sendReact(false,message,"You can't end not started topic!","reply");
 
         topicAuthor = null; 
         timeToExplain = 0;

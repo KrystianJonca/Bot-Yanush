@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const otherSettings = require('../config/other-settings.json');
 const React = require("../modules/reacting.js");
 
-module.exports.run = async (bot,message,args) => {
+module.exports.run = async (bot,message,args,prefix) => {
     let reportUser = message.guild.member(message.mentions.users.first() || message.mentions.users.get(args[0]));
     let reason = args.join(" ").slice(22);
 

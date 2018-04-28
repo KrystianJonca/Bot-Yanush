@@ -1,6 +1,6 @@
 const React = require('../modules/reacting.js');
 
-module.exports.run = async (bot,message,args) => {
+module.exports.run = async (bot,message,args,prefix) => {
     let msg = await message.channel.send("Loading avatar...");
 
     await message.channel.send({files: [

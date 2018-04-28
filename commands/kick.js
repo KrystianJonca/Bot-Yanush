@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const otherSettings = require('../config/other-settings.json');
 const React = require("../modules/reacting.js");
 
-module.exports.run = async (bot,message,args) => {
+module.exports.run = async (bot,message,args,prefix) => {
     let kickUser = message.guild.member(message.mentions.users.first() || message.mentions.users.get(args[0]));
     let reason = args.join(" ").slice(22);
 
@@ -10,8 +10,8 @@ module.exports.run = async (bot,message,args) => {
     if (kickUser.id === message.author.id) return React.sendReact(false,message,"You cannot kick yourself!","reply");
     if (kickUser.id === bot.user.id) return React.sendReact(false,message,"I'm not a moron( ͡° ͜ʖ ͡°)","send");
     if (!reason) return React.sendReact(false,message,"You must give a reason!","reply");
-    if (!message.member.hasPermission("kick_MEMBERS")) return React.sendReact(false,message,"You don't have require permission!","reply");
-    if (kickUser.hasPermission("kick_MEMBERS")) return React.sendReact(false,message,"That person can't be kicked!","reply");
+    if (!message.member.hasPermission("KICK_MEMBERS")) return React.sendReact(false,message,"You don't have require permission!","reply");
+    if (kickUser.hasPermission("KICK_MEMBERS")) return React.sendReact(false,message,"That person can't be kicked!","reply");
 
     
     let embed = new Discord.RichEmbed()

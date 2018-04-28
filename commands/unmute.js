@@ -2,13 +2,14 @@ const Discord = require('discord.js');
 const otherSettings = require('../config/other-settings.json');
 const React = require("../modules/reacting.js");
 
-module.exports.run = async (bot,message,args) => {
+module.exports.run = async (bot,message,args,prefix) => {
     let muteUser = message.guild.member(message.mentions.users.first() || message.mentions.users.get(args[0]));
     let role = message.guild.roles.find(r => r.name === "Muted");
     let reason = args.join(" ").slice(22);
 
     if (!muteUser) return React.sendReact(false,message,"You did not specify a user mention or ID!","reply");
-    if (muteUser.id === bot.user.id) return React.sendReact(false,message,"I'm not a moron( ͡° ͜ʖ ͡°)","reply");
+    if (muteUser.id === message.author.id) return React.sendReact(false,message,"You cannot unmute yourself!","reply");
+    if (muteUser.id === bot.user.id) return React.sendReact(false,message,"I never been and I will never be muted!","reply");
     if (!reason) return React.sendReact(false,message,"You must give a reason!","reply");
     if (!message.member.hasPermission("KICK_MEMBERS")) return React.sendReact(false,message,"You don't have require permission!","reply");
     if (muteUser.hasPermission("KICK_MEMBERS")) return React.sendReact(false,message,"That person can't be Unmuted!","reply");
