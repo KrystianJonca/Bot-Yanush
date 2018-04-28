@@ -2,17 +2,11 @@ const Discord = require('discord.js');
 const otherSettings = require('../config/other-settings.json');
 const React = require("../modules/reacting.js");
 
-
-//
-//      THIS COMMAND HAS ERROR, I WILL FIX IT IN THE NEAREST TIME  
-//
-
-module.exports.run = async (bot,message,args) => {
-    return React.sendReact(false,message,"THIS COMMAND HAS ERROR, I WILL FIX IT IN THE NEAREST TIME","reply");
+module.exports.run = async (bot,message,args,prefix) => {
     let muteUser = message.guild.member(message.mentions.users.first() || message.mentions.users.get(args[0]));
     let role = message.guild.roles.find(r => r.name === "Muted");
     let muteTime = args[1];
-    let reason = args.join(" ").slice(22);
+    let reason = args.join(" ").slice(22 + muteTime.length);
 
     if (!muteUser) return React.sendReact(false,message,"You did not specify a user mention or ID!","reply");
     if (muteUser.id === message.author.id) return React.sendReact(false,message,"You cannot mute yourself!","reply");
@@ -47,7 +41,7 @@ module.exports.run = async (bot,message,args) => {
 
         .addField("Muted User", `${muteUser} with ID ${muteUser.id}`)
         .addField("Muted By", `${message.author} with ID ${message.author.id}`)
-        .addField("Mute time", `${muteTime == 0 ? "An indefinite period of time" : muteTime+" sec"}`)                
+        .addField("Mute time", `${muteTime == 0 ? "An indefinite period of time" : muteTime+" min"}`)                
         .addField("Reason", reason)        
         .addField("Muted at", message.createdAt)
         .addField("Channel", message.channel);
