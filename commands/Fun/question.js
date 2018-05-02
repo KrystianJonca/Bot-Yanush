@@ -1,5 +1,5 @@
-const answers = require("../config/answers.json");
-const React = require("../modules/reacting.js");
+const answers = require("../../config/answers.json");
+const React = require("../../modules/reacting.js");
 
 module.exports.run = async (bot,message,args,prefix) => {
     let question = args.join(" ");

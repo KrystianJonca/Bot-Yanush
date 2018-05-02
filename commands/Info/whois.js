@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const React = require("../modules/reacting.js");
+const React = require("../../modules/reacting.js");
 
 module.exports.run = async (bot,message,args,prefix) => {
     let mentionUser = message.guild.member(message.mentions.users.first() || message.mentions.users.get(args[0]));

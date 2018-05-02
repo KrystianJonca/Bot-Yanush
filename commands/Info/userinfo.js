@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const React = require("../modules/reacting.js");
+const React = require("../../modules/reacting.js");
 
 module.exports.run = async (bot,message,args,prefix) => {
     let embed = new Discord.RichEmbed()

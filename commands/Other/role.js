@@ -1,5 +1,5 @@
-const roles = require('../config/roles.json');
-const React = require("../modules/reacting.js");
+const roles = require("../../config/roles.json");
+const React = require("../../modules/reacting.js");
 
 module.exports.run = async (bot,message,args,prefix) => {
     let roleToAdd = args[0];

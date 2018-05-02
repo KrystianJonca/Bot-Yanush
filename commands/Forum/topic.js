@@ -1,6 +1,6 @@
-const otherSettings = require('../config/other-settings.json');
+const otherSettings = require('../../config/other-settings.json');
 const Discord = require('discord.js');
-const React = require("../modules/reacting.js");
+const React = require("../../modules/reacting.js");
 
 let timeToExplain = otherSettings.topic_time_to_explain * 60;
 let canAddTopic = true;

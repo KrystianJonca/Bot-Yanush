@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const React = require("../modules/reacting.js");
+const React = require("../../modules/reacting.js");
 const fs = require('fs');
 
 let warns = JSON.parse(fs.readFileSync("./database/warnings.json", "utf8"));

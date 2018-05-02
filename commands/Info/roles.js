@@ -1,6 +1,6 @@
-const roles = require('../config/roles.json');
+const roles = require("../../config/roles.json");
 const characterLimit = 2000;
-const React = require("../modules/reacting.js");
+const React = require("../../modules/reacting.js");
 
 module.exports.run = async (bot,message,args,prefix) => {
     let msg = "Here is the avaiable roles list:\n";

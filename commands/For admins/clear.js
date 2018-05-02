@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const React = require("../modules/reacting.js");
+const React = require("../../modules/reacting.js");
 const messageToDeleteLimit = 100;
 
 module.exports.run = async (bot,message,args,prefix) => {
