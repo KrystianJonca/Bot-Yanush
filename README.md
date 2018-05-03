@@ -1,2 +1,2 @@
-# DiscordJSBot
-Simple Discord Bot written in Discordjs
+# Bot Yanush
+**Simple Discord Bot written in Discordjs**
