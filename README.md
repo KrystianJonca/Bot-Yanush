@@ -24,9 +24,9 @@
 - Bot Yanush Dev Discord server
 
 ## Commands
-**Config commands: ** <br />
-**1: ** !ai <on/off> | **Description:**  Auto spam mute and auto writing with caps lock alert functions<br />
-**2: ** !prefix <prefix to set> | **Description:**  Set prefix for your own server <br />
+**Config commands:** <br />
+**1:** !ai <on/off> | **Description:**  Auto spam mute and auto writing with caps lock alert functions<br />
+**2:** !prefix <prefix to set> | **Description:**  Set prefix for your own server <br />
 **For admins commands: **<br />
 **1:** !ban @user <reason> | **Description:**  Ban a user(permission require) <br />
 **2:** !clear <how much message to clear> | **Description:**  Clear messages <br />
