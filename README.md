@@ -1,12 +1,12 @@
-#Bot Yanush
+# Bot Yanush
 **Simple Discord Bot written in Discordjs**
 > The avatar of the bot will be changed, the current one is temporary
 
-##Info
+## Info
 - **Bot name:** Bot Yanush
 - **Default_prefix**: "Y!"(Customizable)
 
-##Features
+## Features
 - Auto spam detector
 - Auto writing with caps lock detector
 - Modern command handler system 
@@ -15,14 +15,16 @@
 - Large config capabilities
 - Logs system
 
-##In progress
-- Bot Yanush Dev Discord server
+## In progress
 - Bot website
-- Providing the possibility of inviting a bot to the server
 - New logo 
 
-##Commands
-**Config commands: **
+## TODO
+- Providing the possibility of inviting a bot to the server
+- Bot Yanush Dev Discord server
+
+## Commands
+**Config commands:**
 **1:** !ai <on/off> | **Description:**  Auto spam mute and auto writing with caps lock alert functions
 **2:** !prefix <prefix to set> | **Description:**  Set prefix for your own server 
 **For admins commands: **
@@ -32,8 +34,8 @@
 **4:** !mute @user <time in sec> <reason> | **Description:**  Mute a user(permission require) 
 **5:** !unmute @user <reason> | **Description:**  Mute a user(permission require) 
 **6:** !warn @user <reason> | **Description:**  Warn a user(3 warns - mute on 15 min, 5 warns - ban)
-**Forum commands: **
-**1:** !topic <topic content> | **Description:**  Create new topic 
+**Forum commands:**
+**1: ** !topic <topic content> | **Description:**  Create new topic 
 **Info commands: **
 **1:**!botinfo | **Description:**  A few facts about me! 
 **2:** !date,time | **Description:**  Get a current date 
