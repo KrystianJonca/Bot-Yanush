@@ -35,8 +35,8 @@
 **5:** !unmute @user <reason> | **Description:**  Mute a user(permission require) <br />
 **6:** !warn @user <reason> | **Description:**  Warn a user(3 warns - mute on 15 min, 5 warns - ban)<br />
 **Forum commands:**<br />
-**1: ** !topic <topic content> | **Description:**  Create new topic <br />
-**Info commands: **<br />
+**1:** !topic <topic content> | **Description:**  Create new topic <br />
+**Info commands:**<br />
 **1:**!botinfo | **Description:**  A few facts about me! <br />
 **2:** !date,time | **Description:**  Get a current date <br />
 **3:** !help,commands,info | **Description:**  Get a avaiable command list<br />
