@@ -17,7 +17,6 @@
 
 ## In progress
 - Bot website
-- New logo 
 
 ## TODO
 - Providing the possibility of inviting a bot to the server
