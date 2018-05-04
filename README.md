@@ -27,7 +27,7 @@
 **Config commands:** <br />
 **1:** !ai <on/off> | **Description:**  Auto spam mute and auto writing with caps lock alert functions<br />
 **2:** !prefix <prefix to set> | **Description:**  Set prefix for your own server <br />
-**For admins commands: **<br />
+**For admins commands:**<br />
 **1:** !ban @user <reason> | **Description:**  Ban a user(permission require) <br />
 **2:** !clear <how much message to clear> | **Description:**  Clear messages <br />
 **3:** !kick @user <reason> | **Description**:  Kick a user(permission require) <br />
@@ -44,7 +44,7 @@
 **5:** !serverinfo | **Description:**  A few facts about our server <br />
 **6:** !userinfo | **Description:**  Get a few facts about you! <br />
 **7:** !whois @user | **Description:**  Mention user info <br />
-**Fun commands: **<br />
+**Fun commands:**<br />
 **1:** !avatar | **Description:**  See how beautiful your avatar is! <br />
 **2:** !hug @user | **Description:**  Hug a user <br />
 **3:** !love @user | **Description:**  Check how much you love the other person<br />
