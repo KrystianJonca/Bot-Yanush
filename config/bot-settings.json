@@ -1,5 +1,5 @@
 {
     "bot_username": "Bot Yanush",
-    "avatar_location":"./assets/avatar.jpg",    
+    "avatar_location":"./assets/awatar.png",    
     "default_prefix": "Y!"
 }
