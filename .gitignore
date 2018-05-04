@@ -1,3 +1,8 @@
-/node_modules/
-/archiveCommands/
+# Node modules
+node_modules/
+
+# Archive commands
+archiveCommands/
+
+# Token
 config/token.json

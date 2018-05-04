@@ -33,6 +33,8 @@ module.exports.run = async (bot,message,args,prefix) => {
     }catch(e){
         console.error(error.stack);        
     }
+    if (muteUser.roles.has(role.id)) return React.sendReact(false,message,"This user is already muted!","send");
+    
     let embed = new Discord.RichEmbed()
         .setAuthor("Mute")
         .setDescription("Mute a user")
@@ -46,7 +48,6 @@ module.exports.run = async (bot,message,args,prefix) => {
         .addField("Muted at", message.createdAt)
         .addField("Channel", message.channel);
 
-    if (muteUser.roles.has(role.id)) return React.sendReact(false,message,"This user is already muted!","send");
 
     await muteUser.addRole(role);
 

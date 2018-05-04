@@ -1,11 +1,13 @@
+const React = require('../../modules/reacting.js');
+
 module.exports.run = async (bot,message,args) => {
     let hugUser = message.guild.member(message.mentions.users.first() || message.mentions.users.get(args[0]));
     let huggingUser = message.author;
 
-    if (hugUser.id === bot.user.id) return message.channel.send("Sweet! :heart_eyes: :heart_eyes: ");
-    if (!hugUser) return message.channel.send("You did not specify a user mention or ID!");
+    if (!hugUser) return React.sendReact(false,message,"You did not specify a user mention or ID!","reply");
+    if (hugUser.id === bot.user.id) return React.sendReact(true,message,"Sweet! :heart_eyes: :heart_eyes:","reply");
 
-    message.channel.send(`${huggingUser} hug ${hugUser} :heart_eyes: :heart: :heart_eyes: :heart:`)
+    React.sendReact(true,message,`${huggingUser} hug ${hugUser} :heart_eyes: :heart: :heart_eyes: :heart:`,"reply");
 }
 module.exports.config = {
     name: ["hug"],

@@ -30,5 +30,5 @@ module.exports.run = async (bot,message,args,prefix) => {
 module.exports.config = {
     name: ["prefix"],
     args:"<prefix to set>",
-    description: "Set your own prefix!"
+    description: "Set prefix for your own server"
 }   

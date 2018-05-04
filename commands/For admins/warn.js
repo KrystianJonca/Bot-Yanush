@@ -113,5 +113,5 @@ module.exports.run = async (bot,message,args,prefix) => {
 module.exports.config = {
     name: ["warn"],
     args:"@user <reason>",
-    description: "Warn a user"
+    description: "Warn a user(3 warns - mute on 15 min, 5 warns - ban)"
 }

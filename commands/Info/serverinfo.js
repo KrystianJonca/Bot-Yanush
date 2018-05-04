@@ -3,7 +3,7 @@ const fs = require("fs");
 const React = require("../../modules/reacting.js");
 
 module.exports.run = async (bot,message,args,prefix) => {
-    let prefixes = JSON.parse(fs.readFileSync("./database/prefixes.json","utf8"));
+    let aiSettings = JSON.parse(fs.readFileSync("./database/ai-settings.json","utf8"));
 
     let embed = new Discord.RichEmbed()
         .setAuthor(message.guild.name)
@@ -12,7 +12,8 @@ module.exports.run = async (bot,message,args,prefix) => {
         .setThumbnail(message.guild.iconURL)
 
         .addField("Server ID", message.guild.id)
-        .addField("Server prefix", prefixes[message.guild.id])
+        .addField("Server prefix", prefix)
+        .addField("AI functions", !aiSettings[message.guild.id] ? "Turn off" : aiSettings[message.guild.id].ai ? "Turn on" : "Turn off")
         .addField("Created at", message.guild.createdAt)
         .addField("You Joined", message.member.joinedAt)
         .addField("Total members", message.guild.memberCount);
