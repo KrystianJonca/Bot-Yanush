@@ -1,6 +1,6 @@
 # Bot Yanush
 **Simple Discord Bot written in Discordjs**
-> The avatar of the bot will be changed, the current one is temporary
+[![Avatar](https://raw.githubusercontent.com/KrystianJonca/Bot-Yanush/master/assets/awatar.png "Avatar")](https://raw.githubusercontent.com/KrystianJonca/Bot-Yanush/master/assets/awatar.png "Avatar")
 
 ## Info
 - **Bot name:** Bot Yanush
