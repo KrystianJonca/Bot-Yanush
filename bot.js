@@ -40,7 +40,7 @@ fs.readdir('./commands/',(err,folders) =>{
 
 bot.on('ready',() =>{
     bot.user.setUsername(botSettings.bot_username);
-    //bot.user.setAvatar(botSettings.avatar_location);
+    bot.user.setAvatar(botSettings.avatar_location);
 
     randomActivity();
     console.log('Bot is ready to use!');
