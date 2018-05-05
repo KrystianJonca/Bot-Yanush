@@ -1,6 +1,5 @@
 # Bot Yanush
 **Simple Discord Bot written in Discordjs**
-[![Avatar](https://raw.githubusercontent.com/KrystianJonca/Bot-Yanush/master/assets/awatar.png "Avatar")](https://raw.githubusercontent.com/KrystianJonca/Bot-Yanush/master/assets/awatar.png "Avatar")
 
 ## Info
 - **Bot name:** Bot Yanush
