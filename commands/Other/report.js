@@ -23,7 +23,7 @@ module.exports.run = async (bot,message,args,prefix) => {
         .addField("Time", message.createdAt)
         .addField("Channel", message.channel);
 
-    let reportsChannel = message.guild.channels.find('name',"reports")
+    let reportsChannel = message.guild.channels.find('name',"reports");
     reportsChannel.send(embed);
 
     React.sendReact(true,message,"Report sent successfully!","send");            

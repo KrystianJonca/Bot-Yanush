@@ -29,6 +29,6 @@ module.exports.run = async (bot,message,args,prefix) => {
 }
 module.exports.config = {
     name: ["role"],
-    args:"<role>",
+    args:"<role to set>",
     description: "Set your role!", 
 }

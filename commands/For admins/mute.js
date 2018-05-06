@@ -11,10 +11,10 @@ module.exports.run = async (bot,message,args,prefix) => {
     if (!muteUser) return React.sendReact(false,message,"You did not specify a user mention or ID!","reply");
     if (muteUser.id === message.author.id) return React.sendReact(false,message,"You cannot mute yourself!","reply");
     if (muteUser.id === bot.user.id) return React.sendReact(false,message,"I'm not a moron( ͡° ͜ʖ ͡°)","reply");
-    if (isNaN(muteTime)) return React.sendReact(false,message,"Mute time must be a number!","reply");
+    if (!muteTime || isNaN(muteTime)) return React.sendReact(false,message,"Mute time must be a number!","reply");
     if (!reason) return React.sendReact(false,message,"You must give a reason and mute time(in min) or type `0` to give a mute to appeal!","reply");
     if (!message.member.hasPermission("KICK_MEMBERS")) return React.sendReact(false,message,"You don't have require permission!","send");
-    if (muteUser.hasPermission("KICK_MEMBERS")) return React.sendReact(false,message,"That person can't be Muteed!","send");
+    if (muteUser.hasPermission("KICK_MEMBERS")) return React.sendReact(false,message,"That person can't be Muted!","send");
     try {    
         if (!role) {
             role = await message.guild.createRole({
@@ -56,7 +56,7 @@ module.exports.run = async (bot,message,args,prefix) => {
     
     React.sendReact(true,message,`User Muted! On ${muteTime == 0 ? "an indefinite period of time" : muteTime+" min"}`,"send");
 
-    if (muteTime == 0) return;
+    if (muteTime === 0) return;
     else{
         setTimeout(()=>{
             let embed = new Discord.RichEmbed()

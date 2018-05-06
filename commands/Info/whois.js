@@ -19,7 +19,6 @@ module.exports.run = async (bot,message,args,prefix) => {
         .addField("Created at", mentionUser.user.createdAt);
         
     return React.sendReact(true,message,embed,"send");
-
 }
 module.exports.config = {
     name: ["whois"],
