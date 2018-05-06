@@ -345,7 +345,7 @@ function randomActivity(){
 
     let interval = activity.activity_change_interval;
     let activityArray = activity.activity;
-    let activityNumber = Math.floor(Math.random()*activityArray.length);
+    let activityNumber = Math.floor(Math.random()*activityArray.length)+1;
 
     bot.user.setStatus('Online');
     bot.user.setActivity(activityArray[activityNumber]);
@@ -353,4 +353,4 @@ function randomActivity(){
     timer = setTimeout(randomActivity, interval * 1000);
 }
 
-bot.login(token.token);
+bot.login(process.env.BOT_TOKEN);
