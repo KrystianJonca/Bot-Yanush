@@ -25,7 +25,7 @@ module.exports.run = async (bot,message,args,prefix) => {
                 jsfiles.forEach((f,i) => {
                     let cmds = require(`../${folder}/${f}`);
             
-                    helpMsg += `**${i+1}:** \`!${cmds.config.name} ${cmds.config.args}\` | **Description:**  ${cmds.config.description} \n`;
+                    helpMsg += `**${i+1}:** \`${prefix}${cmds.config.name} ${cmds.config.args}\` | **Description:**  ${cmds.config.description} \n`;
                    
                     if (folders.length-1 === index && jsfiles.length-1 === i) {
                         if (helpMsg.length >= characterLimit) {
