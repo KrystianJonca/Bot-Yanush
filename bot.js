@@ -194,6 +194,22 @@ bot.on('message',async message => {
         }, 10000);
     }
 });
+bot.on("guildCreate", guild => {
+    console.log(`Joined a new guild: ${guild.name}`);
+})
+
+bot.on("guildDelete", guild => {
+    console.log(`Left a guild: ${guild.name}`);
+})
+bot.on("debug", info => {
+    console.log(info);
+});
+bot.on("disconnect", event => {
+    console.log(event);
+});
+bot.on("reconnecting",() => {
+    console.log("Reconnecting");
+});
 function commandInfo(cmd,message,prefix){
     fs.readdir('./commands/',(err,folders) =>{
         if (err) console.error(err);
