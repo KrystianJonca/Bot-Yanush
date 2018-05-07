@@ -195,105 +195,6 @@ bot.on('message',async message => {
         }, 10000);
     }
 });
-//
-//LOGS SECTION
-//
-const dateTime = require('node-datetime');
-
-fs.writeFile("./logs/logs.txt", '', (err) => {
-    if (err) console.error(err);
-});
-
-bot.on('ready',() => {
-    let dt = dateTime.create();
-    let time = dt.format('d-m-Y H:M:S');
-    
-    let log = `[${time}] - Bot is ready to use\n`;
-
-    startCounting();
-
-    fs.appendFile("./logs/logs.txt", log, (err) => {
-        if (err) console.error(err);
-    });
-})
-bot.on("guildCreate", guild => {
-    let dt = dateTime.create();
-    let time = dt.format('d-m-Y H:M:S');
-
-    let log = `[${time}] - Joined a new guild: ${guild.name}\n`;
-
-    fs.appendFile("./logs/logs.txt", log, (err) => {
-        if (err) console.error(err);
-    });
-})
-
-bot.on("guildDelete", guild => {
-    let dt = dateTime.create();
-    let time = dt.format('d-m-Y H:M:S');
-
-    let log = `[${time}] - Left a guild: ${guild.name}\n`;
-
-    fs.appendFile("./logs/logs.txt", log, (err) => {
-        if (err) console.error(err);
-    });
-})
-bot.on("error", error => {
-    let dt = dateTime.create();
-    let time = dt.format('d-m-Y H:M:S');
-
-    let log = `[${time}] - Error: ${error.stack}\n`;
-
-    fs.appendFile("./logs/logs.txt", log, (err) => {
-        if (err) console.error(err);
-    });
-});
-bot.on("warn", info => { 
-    let dt = dateTime.create();
-    let time = dt.format('d-m-Y H:M:S');
-
-    let log = `[${time}] - Warn: ${info}\n`;
-
-    fs.appendFile("./logs/logs.txt", log, (err) => {
-        if (err) console.error(err);
-    });
-});
-bot.on("debug", info => {
-    let dt = dateTime.create();
-    let time = dt.format('d-m-Y H:M:S');
-
-    let log = `[${time}] - Debug: ${info}\n`;
-
-    fs.appendFile("./logs/logs.txt", log, (err) => {
-        if (err) console.error(err);
-    });
-});
-bot.on("disconnect", event => {
-    let dt = dateTime.create();
-    let time = dt.format('d-m-Y H:M:S');
-
-    let log = `[${time}] - Disconnect: ${event}\n`;
-
-    fs.appendFile("./logs/logs.txt", log, (err) => {
-        if (err) console.error(err);
-    });
-});
-bot.on("reconnecting",() => {
-    let dt = dateTime.create();
-    let time = dt.format('d-m-Y H:M:S');
-
-    let log = `[${time}] - Reconnecting\n`;
-
-    fs.appendFile("./logs/logs.txt", log, (err) => {
-        if (err) console.error(err);
-    });
-});
-function startCounting(){
-    setInterval(() => {
-        fs.writeFile("./logs/logs.txt", '', (err) => {
-            if (err) console.error(err)
-        });
-    },86400000) // 86400000ms - 24h
-}
 function commandInfo(cmd,message,prefix){
     fs.readdir('./commands/',(err,folders) =>{
         if (err) console.error(err);
@@ -354,3 +255,4 @@ function randomActivity(){
 }
 
 bot.login(process.env.BOT_TOKEN);
+
