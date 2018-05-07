@@ -10,7 +10,6 @@ module.exports.run = async (bot,message,args,prefix) => {
         
         .addField("Full Username", `${message.author.username} #${message.author.discriminator}`)
         .addField("ID", message.author.id)
-        .addField("Roles", message.member.roles.array)        
         .addField("Created at", message.author.createdAt);
         
     return React.sendReact(true,message,embed,"send");
