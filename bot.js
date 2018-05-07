@@ -5,7 +5,6 @@ const React = require("./modules/reacting.js");
 const botSettings = require('./config/bot-settings.json');
 const otherSettings = require('./config/other-settings.json');
 const activity = require('./config/activity.json');
-const token = require('./config/token.json');
 
 const bot = new Discord.Client();
 
