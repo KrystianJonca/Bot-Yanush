@@ -68,11 +68,15 @@ bot.on('message',async message =>{
     
     if (!command.startsWith(prefix)) return;
 
-    let incidentsChannel = message.guild.channels.find('name',"incidents");
+    let incidentsChannel = message.guild.channels.find('name','incidents');
     let topicChannel = message.guild.channels.find('name','topic');
-    let reportsChannel = message.guild.channels.find('name',"reports");
-
-    if (!(incidentsChannel || topicChannel || reportsChannel)) return React.sendReact(false,message,"Can't find require channel, visit my website to check how to configurate server for me","send");
+    let reportsChannel = message.guild.channels.find('name','reports');
+    let botChannel = message.guild.channels.find('name','bot');
+    
+    if (!(incidentsChannel || topicChannel || reportsChannel || botChannel)) return React.sendReact(false,message,"Can't find require channel, visit my website to check how to configurate server for me","send");
+    
+    if (message.channel.id != botChannel.id && command != ("mute" || "ban" || "report" || "warn" || "unmute" || "report")) return React.sendReact(false,message,'Please use commands on specific channel','reply');
+    
     if (args[0] === "--info") {      
         commandInfo(command,message,prefix);
         return;
