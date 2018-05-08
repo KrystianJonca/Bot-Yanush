@@ -105,7 +105,7 @@ bot.on('message',async message =>{
 //AI section
 bot.on('message',async message => {
     if (message.author.bot) return;
-    if (message.member.hasPermission("KICK_MEMBERS")) return;        
+    if (message.member.hasPermission("MANAGE_MESSAGES")) return;        
     if (message.channel.type === "dm") return;
 
     let aiSettings = JSON.parse(fs.readFileSync("./database/ai-settings.json","utf8"));
