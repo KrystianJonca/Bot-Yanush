@@ -1,6 +1,8 @@
 # Bot Yanush
 **Simple Discord Bot written in Discordjs**
 
+![Bot avatar](https://raw.githubusercontent.com/KrystianJonca/Bot-Yanush/master/assets/avatar.png) 
+
 ## Info
 - **Bot name:** Bot Yanush
 - **Default_prefix**: "Y!"(Customizable)
