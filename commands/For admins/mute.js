@@ -13,8 +13,8 @@ module.exports.run = async (bot,message,args,prefix) => {
     if (muteUser.id === bot.user.id) return React.sendReact(false,message,"I'm not a moron( ͡° ͜ʖ ͡°)","reply");
     if (isNaN(muteTime)) muteTime = 0;
     if (!reason) return React.sendReact(false,message,"You must give a reason and mute time(in min) or type `0` to give a mute to appeal!","reply");
-    if (!message.member.hasPermission("KICK_MEMBERS")) return React.sendReact(false,message,"You don't have require permission!","send");
-    if (muteUser.hasPermission("KICK_MEMBERS")) return React.sendReact(false,message,"That person can't be Muted!","send");
+    if (!message.member.hasPermission("MANAGE_MESSAGES")) return React.sendReact(false,message,"You don't have require permission!","send");
+    if (muteUser.hasPermission("MANAGE_MESSAGES")) return React.sendReact(false,message,"That person can't be Muted!","send");
     try {    
         if (!role) {
             role = await message.guild.createRole({
