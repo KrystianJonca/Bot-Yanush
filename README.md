@@ -1,6 +1,8 @@
 # Bot Yanush
 **Simple Discord Bot written in Discordjs**
 
+![Bot avatar](https://raw.githubusercontent.com/KrystianJonca/Bot-Yanush/master/assets/avatar.png) 
+
 ## Info
 - **Bot name:** Bot Yanush
 - **Default_prefix**: "Y!"(Customizable)
@@ -20,7 +22,7 @@
 ## TODO
 - Providing the possibility of inviting a bot to the server
 - Bot Yanush Dev Discord server
-- Add bot to hosting
+
 
 ## Commands
 ***Config commands:*** <br />
