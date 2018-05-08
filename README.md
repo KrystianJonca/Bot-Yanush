@@ -22,7 +22,7 @@
 ## TODO
 - Providing the possibility of inviting a bot to the server
 - Bot Yanush Dev Discord server
-- Add bot to hosting
+
 
 ## Commands
 ***Config commands:*** <br />
