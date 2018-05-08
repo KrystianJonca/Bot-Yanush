@@ -6,12 +6,12 @@ module.exports.run = async (bot,message,args,prefix) => {
     let muteUser = message.guild.member(message.mentions.users.first() || message.mentions.users.get(args[0]));
     let role = message.guild.roles.find(r => r.name === "Muted");
     let muteTime = args[1];
-    let reason = args.join(" ").slice(22 + muteTime.length);
+    let reason = args.join(" ").slice(22 + isNaN(muteTime) ? 0 : muteTime.length);
 
     if (!muteUser) return React.sendReact(false,message,"You did not specify a user mention or ID!","reply");
     if (muteUser.id === message.author.id) return React.sendReact(false,message,"You cannot mute yourself!","reply");
     if (muteUser.id === bot.user.id) return React.sendReact(false,message,"I'm not a moron( ͡° ͜ʖ ͡°)","reply");
-    if (!muteTime || isNaN(muteTime)) return React.sendReact(false,message,"Mute time must be a number!","reply");
+    if (isNaN(muteTime)) muteTime = 0;
     if (!reason) return React.sendReact(false,message,"You must give a reason and mute time(in min) or type `0` to give a mute to appeal!","reply");
     if (!message.member.hasPermission("KICK_MEMBERS")) return React.sendReact(false,message,"You don't have require permission!","send");
     if (muteUser.hasPermission("KICK_MEMBERS")) return React.sendReact(false,message,"That person can't be Muted!","send");
@@ -76,6 +76,6 @@ module.exports.run = async (bot,message,args,prefix) => {
 }
 module.exports.config = {
     name: ["mute"],
-    args:"@user <time in sec> <reason>",
+    args:"@user <time in sec(optional)> <reason>",
     description: "Mute a user(permission require)"  
 }
