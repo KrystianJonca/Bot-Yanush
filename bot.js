@@ -73,7 +73,7 @@ bot.on('message',async message =>{
     let reportsChannel = message.guild.channels.find('name','reports');
     let botChannel = message.guild.channels.find('name','bot');
     
-    if (!(incidentsChannel || topicChannel || reportsChannel || botChannel)) return React.sendReact(false,message,"Can't find require channel, visit my website to check how to configurate server for me","send");
+    if (!incidentsChannel || !topicChannel || !reportsChannel || !botChannel) return React.sendReact(false,message,"Can't find require channel, visit my website to check how to configurate server for me","send");
     
     if ((command.slice(prefix.length).toLowerCase() != "mute" || "ban" || "report" || "unmute" || "report") && (message.channel.id != botChannel.id)) return React.sendReact(false,message,'Please use commands on specific channel','reply');
     
