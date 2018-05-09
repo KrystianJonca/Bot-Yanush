@@ -75,7 +75,7 @@ bot.on('message',async message =>{
     
     if (!incidentsChannel || !topicChannel || !reportsChannel || !botChannel) return React.sendReact(false,message,"Can't find require channel, visit my website to check how to configurate server for me","send");
     
-    if ((command!= "mute") && (command!= "ban") && (command!="report") && (command!="warn") && (command!="unmute") && (command!="report") && (message.channel.id != botChannel.id)) return React.sendReact(false,message,'Please use commands on specific channel','reply');
+    if (((command!= "mute") && (command!= "ban") && (command!="report") && (command!="warn") && (command!="unmute") && (command!="report")) && (message.channel.id != botChannel.id)) return React.sendReact(false,message,'Please use commands on specific channel','reply');
     
     if (args[0] === "--info") {      
         commandInfo(command,message,prefix);
