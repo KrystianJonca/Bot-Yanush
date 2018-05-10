@@ -89,6 +89,7 @@ bot.on('message',async message =>{
         React.sendReact(false,message,`You have to wait ${coolDownSec} seconds between commands`,'reply');
         return;
     }
+    
     if (cmd){
         cmd.run(bot,message,args,prefix);
         coolDown.add(sender.id);
