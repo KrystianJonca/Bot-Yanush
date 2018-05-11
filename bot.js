@@ -42,12 +42,10 @@ bot.on('ready',() =>{
 
     let interval = 10000;
     let activityArray = [
-        `with ${bot.users.array.length} users!`,
-        `on ${bot.guilds.array.length} servers`,
-        `for ${(bot.uptime/3600000).toFixed(2)}`,
-        `on ${bot.channels.array.length} channels`
+        `with ${bot.users.size} users!`,
+        `on ${bot.guilds.size} servers`,
+        `on ${bot.channels.size} channels`
     ];
-    console.log(bot.users.array,bot.guilds.array,bot.uptime);
     let activityNumber = Math.floor(Math.random()*activityArray.length)+1;
     
     bot.user.setStatus('Online');
