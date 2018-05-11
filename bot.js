@@ -41,7 +41,22 @@ bot.on('ready',() =>{
     bot.user.setUsername(botSettings.bot_username);
     bot.user.setAvatar(botSettings.avatar_location);
 
-    randomActivity();
+    let interval = 3600000;
+
+    setInterval(() => {
+        let activityArray = [
+            `with ${bot.users} users!`,
+            `on ${bot.guilds} servers`,
+            `for ${(bot.uptime/3600000).toFixed(2)}`,
+            `on ${bot.channels} channels`
+        ];
+        
+        let activityNumber = Math.floor(Math.random()*activityArray.length)+1;
+    
+        bot.user.setStatus('Online');
+        bot.user.setActivity(activityArray[activityNumber]);
+    },interval);
+
     console.log('Bot is ready to use!');
 });
 bot.on('message',async message =>{
@@ -247,20 +262,6 @@ function commandInfo(cmd,message,prefix){
         });
     });
  
-}
-function randomActivity(){
-    let timer;    
-
-    clearTimeout(timer);
-
-    let interval = activity.activity_change_interval;
-    let activityArray = activity.activity;
-    let activityNumber = Math.floor(Math.random()*activityArray.length)+1;
-
-    bot.user.setStatus('Online');
-    bot.user.setActivity(activityArray[activityNumber]);
-
-    timer = setTimeout(randomActivity, interval * 1000);
 }
 
 bot.login(process.env.BOT_TOKEN);

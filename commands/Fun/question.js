@@ -1,4 +1,3 @@
-const answers = require("../../config/answers.json");
 const React = require("../../modules/reacting.js");
 
 module.exports.run = async (bot,message,args,prefix) => {
@@ -7,7 +6,12 @@ module.exports.run = async (bot,message,args,prefix) => {
     if (!question) return React.sendReact(false,message,"You did not ask me a question!","reply");
     if (question[question.length -1] != "?") return React.sendReact(false,message,"This is not a question!","reply");    
     
-    let answersArray = answers.answers;   
+    let answersArray = [
+        "Yes",
+        "No",
+        "I don't know",
+        "Ask me later"
+    ];   
 
     let randomAnswer = Math.floor(Math.random() * answersArray.length);    
 
