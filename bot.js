@@ -52,7 +52,7 @@ bot.on('ready',() =>{
     bot.user.setActivity(activityArray[activityNumber]);
 
     setInterval(() => {
-        activityNumber = Math.floor(Math.random()*activityArray.length)+1;
+        activityNumber = Math.floor(Math.random()*activityArray.length);
     
         bot.user.setActivity(activityArray[activityNumber]);
     },interval);
@@ -204,11 +204,11 @@ bot.on('message',async message => {
     }
 });
 bot.on("guildCreate", guild => {
-    console.log(`Joined a new guild: ${guild.name}`);
+    console.log(`Joined a new guild: ${guild.name}(id: ${guild.id}). This guild has ${guild.memberCount} members!`);
 })
 
 bot.on("guildDelete", guild => {
-    console.log(`Left a guild: ${guild.name}`);
+    console.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
 })
 bot.on("debug", info => {
     console.log(info);
