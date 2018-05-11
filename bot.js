@@ -4,7 +4,6 @@ const React = require("./modules/reacting.js");
 
 const botSettings = require('./config/bot-settings.json');
 const otherSettings = require('./config/other-settings.json');
-const activity = require('./config/activity.json');
 
 const bot = new Discord.Client();
 
@@ -50,7 +49,7 @@ bot.on('ready',() =>{
             `for ${(bot.uptime/3600000).toFixed(2)}`,
             `on ${bot.channels} channels`
         ];
-        
+
         let activityNumber = Math.floor(Math.random()*activityArray.length)+1;
     
         bot.user.setStatus('Online');
