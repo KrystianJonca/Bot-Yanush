@@ -40,12 +40,12 @@ bot.on('ready',() =>{
     bot.user.setUsername(botSettings.bot_username);
     bot.user.setAvatar(botSettings.avatar_location);
 
-    let interval = 3600000;
+    let interval = 10000;
     let activityArray = [
-        `with ${bot.users} users!`,
-        `on ${bot.guilds} servers`,
+        `with ${bot.users.array.length} users!`,
+        `on ${bot.guilds.array.length} servers`,
         `for ${(bot.uptime/3600000).toFixed(2)}`,
-        `on ${bot.channels} channels`
+        `on ${bot.channels.array.length} channels`
     ];
 
     let activityNumber = Math.floor(Math.random()*activityArray.length)+1;
