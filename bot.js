@@ -44,7 +44,9 @@ bot.on('ready',() =>{
     let activityArray = [
         `with ${bot.users.size} users!`,
         `on ${bot.guilds.size} servers`,
-        `on ${bot.channels.size} channels`
+        `on ${bot.channels.size} channels`, 
+        `for ${(bot.uptime/3600000).toFixed(2)} h!`, 
+        `with ${bot.ping} ping!`
     ];
     let activityNumber = Math.floor(Math.random()*activityArray.length);
     
