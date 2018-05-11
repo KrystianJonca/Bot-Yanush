@@ -11,8 +11,9 @@ module.exports.run = async (bot,message,args,prefix) => {
     if (muteUser.id === message.author.id) return React.sendReact(false,message,"You cannot mute yourself!","reply");
     if (muteUser.id === bot.user.id) return React.sendReact(false,message,"I'm not a moron( ͡° ͜ʖ ͡°)","reply");
     if (!reason) return React.sendReact(false,message,"You must give a reason!","reply");
-    if (!message.member.hasPermission("MANAGE_MESSAGES")) return React.sendReact(false,message,"You don't have require permission!","send");
-    if (muteUser.hasPermission("MANAGE_MESSAGES")) return React.sendReact(false,message,"That person can't be Muted!","send");
+    if (!message.member.hasPermission("ADMINISTRATOR")) return React.sendReact(false,message,"You don't have require permission!","send");
+    if (muteUser.hasPermission("ADMINISTRATOR")) return React.sendReact(false,message,"That person can't be Muted!","send");
+
     try {    
         if (!role) {
             role = await message.guild.createRole({
@@ -31,6 +32,7 @@ module.exports.run = async (bot,message,args,prefix) => {
     }catch(e){
         console.error(error.stack);        
     }
+
     if (muteUser.roles.has(role.id)) return React.sendReact(false,message,"This user is already muted!","send");
     
     let embed = new Discord.RichEmbed()
