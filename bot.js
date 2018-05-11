@@ -46,7 +46,7 @@ bot.on('ready',() =>{
         `on ${bot.guilds.size} servers`,
         `on ${bot.channels.size} channels`
     ];
-    let activityNumber = Math.floor(Math.random()*activityArray.length)+1;
+    let activityNumber = Math.floor(Math.random()*activityArray.length);
     
     bot.user.setStatus('Online');
     bot.user.setActivity(activityArray[activityNumber]);
