@@ -12,8 +12,8 @@ module.exports.run = async (bot,message,args,prefix) => {
     if (warningUser.id === message.author.id) return React.sendReact(false,message,"You cannot warning yourself!","reply");
     if (warningUser.id === bot.user.id) return React.sendReact(false,message,"I'm not a moron( ͡° ͜ʖ ͡°)","send");
     if (!reason) return React.sendReact(false,message,"You must give a reason!","reply");
-    if (!message.member.hasPermission("KICK_MEMBERS")) return React.sendReact(false,message,"You don't have require permission!","reply");
-    if (warningUser.hasPermission("KICK_MEMBERS")) return React.sendReact(false,message,"That person can't be warned!","reply");
+    if (!message.member.has("KICK_MEMBERS")) return React.sendReact(false,message,"You don't have require permission!","reply");
+    if (warningUser.has("KICK_MEMBERS")) return React.sendReact(false,message,"That person can't be warned!","reply");
 
     if (!warns[warningUser.id]) warns[warningUser.id] = {
         warnings: 0

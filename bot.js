@@ -167,8 +167,7 @@ bot.on('message',async message => {
                 .setColor("#ff0000")
                 .setThumbnail(message.author.displayAvatarURL)
 
-                .addField("Muted User", `${message.author} with ID ${message.author.id}`)
-                .addField("Mute time", `${muteTime} min`)                
+                .addField("Muted User", `${message.author} with ID ${message.author.id}`)                
                 .addField("Reason", "Spamming messages")        
                 .addField("Muted at", message.createdAt)
                 .addField("Channel", message.channel);
@@ -178,21 +177,7 @@ bot.on('message',async message => {
             let incidentsChannel = message.guild.channels.find('name',"incidents");
             incidentsChannel.send(embed);
 
-            React.sendReact(true,message,`Stop spam! I muted you on ${muteTime} min`,"send");
-
-            setTimeout(()=>{
-                let embed = new Discord.RichEmbed()
-                    .setAuthor("Mute time passed")
-                    .setDescription("Auto unmute")
-                    .setColor("#4CAF50")
-                
-                    .addField("Unmuted User", `${message.author} with ID ${message.author.id}`)
-                    .addField("Mute at", message.createdAt);
-    
-                message.member.removeRole(role);
-    
-                return incidentsChannel.send(embed);      
-            },muteTime * 60000);
+            React.sendReact(true,message,`Stop spam! I muted you`,"send");
         }
 
         setTimeout(() => {
