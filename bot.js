@@ -41,18 +41,21 @@ bot.on('ready',() =>{
     bot.user.setAvatar(botSettings.avatar_location);
 
     let interval = 3600000;
+    let activityArray = [
+        `with ${bot.users} users!`,
+        `on ${bot.guilds} servers`,
+        `for ${(bot.uptime/3600000).toFixed(2)}`,
+        `on ${bot.channels} channels`
+    ];
+
+    let activityNumber = Math.floor(Math.random()*activityArray.length)+1;
+    
+    bot.user.setStatus('Online');
+    bot.user.setActivity(activityArray[activityNumber]);
 
     setInterval(() => {
-        let activityArray = [
-            `with ${bot.users} users!`,
-            `on ${bot.guilds} servers`,
-            `for ${(bot.uptime/3600000).toFixed(2)}`,
-            `on ${bot.channels} channels`
-        ];
-
-        let activityNumber = Math.floor(Math.random()*activityArray.length)+1;
+        activityNumber = Math.floor(Math.random()*activityArray.length)+1;
     
-        bot.user.setStatus('Online');
         bot.user.setActivity(activityArray[activityNumber]);
     },interval);
 
