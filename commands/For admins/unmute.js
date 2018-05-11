@@ -11,8 +11,8 @@ module.exports.run = async (bot,message,args,prefix) => {
     if (muteUser.id === message.author.id) return React.sendReact(false,message,"You cannot unmute yourself!","reply");
     if (muteUser.id === bot.user.id) return React.sendReact(false,message,"I never been and I will never be muted!","reply");
     if (!reason) return React.sendReact(false,message,"You must give a reason!","reply");
-    if (!message.member.has("MANAGE_MESSAGES")) return React.sendReact(false,message,"You don't have require permission!","reply");
-    if (muteUser.has("MANAGE_MESSAGES")) return React.sendReact(false,message,"That person can't be Unmuted!","reply");
+    if (!message.member.hasPermission("MANAGE_MESSAGES")) return React.sendReact(false,message,"You don't have require permission!","reply");
+    if (muteUser.hasPermission("MANAGE_MESSAGES")) return React.sendReact(false,message,"That person can't be Unmuted!","reply");
     
     let embed = new Discord.RichEmbed()
         .setAuthor("Unmute")

@@ -10,8 +10,8 @@ module.exports.run = async (bot,message,args,prefix) => {
     if (kickUser.id === message.author.id) return React.sendReact(false,message,"You cannot kick yourself!","reply");
     if (kickUser.id === bot.user.id) return React.sendReact(false,message,"I'm not a moron( ͡° ͜ʖ ͡°)","send");
     if (!reason) return React.sendReact(false,message,"You must give a reason!","reply");
-    if (!message.member.has("KICK_MEMBERS")) return React.sendReact(false,message,"You don't have require permission!","reply");
-    if (kickUser.has("KICK_MEMBERS")) return React.sendReact(false,message,"That person can't be kicked!","reply");
+    if (!message.member.hasPermission("ADMINISTRATOR")) return React.sendReact(false,message,"You don't have require permission!","reply");
+    if (kickUser.hasPermission("ADMINISTRATOR")) return React.sendReact(false,message,"That person can't be kicked!","reply");
 
     
     let embed = new Discord.RichEmbed()

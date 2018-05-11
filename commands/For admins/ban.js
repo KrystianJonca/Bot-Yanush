@@ -10,8 +10,8 @@ module.exports.run = async (bot,message,args,prefix) => {
     if (banUser.id === message.author.id) return React.sendReact(false,message,"You cannot ban yourself!","reply");
     if (banUser.id === bot.user.id) return React.sendReact(false,message,"I'm not a moron( ͡° ͜ʖ ͡°)","send");
     if (!reason) return React.sendReact(false,message,"You must give a reason!","reply");
-    if (!message.member.has("BAN_MEMBERS")) return React.sendReact(false,message,"You don't have require permission!","reply");
-    if (banUser.has("BAN_MEMBERS")) return React.sendReact(false,message,"That person can't be baned!","reply");
+    if (!message.member.hasPermission("ADMINISTRATOR")) return React.sendReact(false,message,"You don't have require permission!","reply");
+    if (banUser.hasPermission("ADMINISTRATOR")) return React.sendReact(false,message,"That person can't be baned!","reply");
 
     let embed = new Discord.RichEmbed()
         .setAuthor("Ban")
