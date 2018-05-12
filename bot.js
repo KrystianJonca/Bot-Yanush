@@ -59,8 +59,8 @@ bot.on('ready',() =>{
             `with ${bot.users.size} users!`,
             `on ${bot.guilds.size} servers`,
             `on ${bot.channels.size} channels`, 
-            `for ${(bot.uptime/3600000).toFixed(2)} h!`, 
-            `with ${bot.ping} ping!`
+            `for ${(bot.uptime/3600000).toFixed(1)} h!`, 
+            `with ${(bot.ping).toFixed(0)} ping!`
         ];
 
         activityNumber = Math.floor(Math.random()*activityArray.length);
