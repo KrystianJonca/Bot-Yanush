@@ -23,6 +23,9 @@ module.exports.run = async (bot,message,args,prefix) => {
         case "-explain":
             explain();
             break;
+        case "-info":
+            info();
+            break;
         default:
             newTopic();
             break;
@@ -41,7 +44,9 @@ module.exports.run = async (bot,message,args,prefix) => {
             
             .addField("Author",topicAuthor)
             .addField("Topic",topic)
-            .addField("Time to explain",`${(timeToExplain/60).toFixed(2)} min`);        
+            .addField("Time to explain",`${(timeToExplain/60).toFixed(2)} min`)
+            .addField(`For more info use ${prefix}topic -info`);    
+                    
 
         React.sendReact(true,message,embed,"send");
 
@@ -78,6 +83,17 @@ module.exports.run = async (bot,message,args,prefix) => {
             timeToExplain --;      
         },1000);
         return;
+    }
+    function info (){
+        let embed = new Discord.RichEmbed()
+            .setTitle("Topic command info")
+            .setColor("#9CCC65")            
+            
+            .addField(`Use ${prefix}topic -explain to get how long the topic ends`)
+            .addField(`Use ${prefix}topic -end to end topic now (only for admins and topic author)`);    
+                    
+
+        React.sendReact(true,message,embed,"send");
     }
     function endTopic(){
         if (canAddTopic) return React.sendReact(false,message,"You can't end not started topic!","reply");        
