@@ -15,7 +15,7 @@ module.exports.run = async (bot,message,args,prefix) => {
     if (!message.member.hasPermission("KICK_MEMBERS")) return React.sendReact(false,message,"You don't have require permission!","reply");
     if (cleanUser.hasPermission("KICK_MEMBERS")) return React.sendReact(false,message,"That person can't be warned!","reply");
 
-    warns[warningUser.id].warnings = 0;
+    warns[cleanUser.id].warnings = 0;
 
     fs.writeFile("./database/warnings.json",JSON.stringify(warns), (err) => {if(err) console.error(err);});
 
