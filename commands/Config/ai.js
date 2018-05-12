@@ -6,7 +6,7 @@ module.exports.run = async (bot,message,args,prefix) => {
     let boolToSet = (args[0]=="on") ? true : false;
     
     if (!message.member.hasPermission("MANAGE_SERVER")) return React.sendReact(false,message,"You don't have require permission!","reply");
-    if (!boolToSet || (args[0] !== "on" &&  args[0] !== "off")) return React.sendReact(false,message,"You must turn on/off auto spam mute and auto caps lock alert function","reply");
+    if (args[0] !== "on" &&  args[0] !== "off") return React.sendReact(false,message,"You must turn on/off auto spam mute and auto caps lock alert function","reply");
 
     let aiSettings = JSON.parse(fs.readFileSync("./database/ai-settings.json","utf8"));
     
