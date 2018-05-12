@@ -36,6 +36,7 @@
 **5:** Y!unmute @user (reason) | **Description:**  Mute a user(permission require) <br />
 **6:** Y!warn @user (reason) | **Description:**  Warn a user(3 warns - mute on 15 min, 5 warns - ban)<br />
 **7:** Y!whois @user | **Description:**  Mention user info <br />
+**8:** Y!cleanwarn @user (reason) | **Description:**  Clean user's warns <br />
 ***Forum commands:*** <br />
 **1:** Y!topic (topic content) | **Description:**  Create new topic <br />
 ***Info commands:*** <br />
