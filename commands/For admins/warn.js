@@ -94,7 +94,8 @@ module.exports.run = async (bot,message,args,prefix) => {
                 return incidentsChannel.send(embed);      
             },muteTime * 60000);
         };
-    }else if (warns[warningUser.id].warnings === 5) {
+    }
+    if (warns[warningUser.id].warnings === 5) {
         let embed = new Discord.RichEmbed()
             .setAuthor("Ban")
             .setDescription("ban a user")
