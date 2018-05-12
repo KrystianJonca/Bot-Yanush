@@ -48,12 +48,21 @@ bot.on('ready',() =>{
         `for ${(bot.uptime/3600000).toFixed(2)} h!`, 
         `with ${bot.ping} ping!`
     ];
+
     let activityNumber = Math.floor(Math.random()*activityArray.length);
     
     bot.user.setStatus('Online');
     bot.user.setActivity(activityArray[activityNumber]);
 
     setInterval(() => {
+        activityArray = [
+            `with ${bot.users.size} users!`,
+            `on ${bot.guilds.size} servers`,
+            `on ${bot.channels.size} channels`, 
+            `for ${(bot.uptime/3600000).toFixed(2)} h!`, 
+            `with ${bot.ping} ping!`
+        ];
+
         activityNumber = Math.floor(Math.random()*activityArray.length);
     
         bot.user.setActivity(activityArray[activityNumber]);
