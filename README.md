@@ -3,6 +3,8 @@
 
 ![Bot avatar](https://raw.githubusercontent.com/KrystianJonca/Bot-Yanush/master/assets/avatar.png) 
 
+**Invite:** https://bit.ly/2wiPNYS
+
 ## Info
 - **Bot name:** Bot Yanush
 - **Default_prefix**: "Y!"(Customizable)
@@ -17,7 +19,6 @@
 - Logs system
 
 ## In progress
-- Providing the possibility of inviting a bot to the server
 - Bot Yanush Dev Discord server
 
 ## TODO
