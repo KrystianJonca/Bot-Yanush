@@ -45,7 +45,7 @@ module.exports.run = async (bot,message,args,prefix) => {
             .addField("Author",topicAuthor)
             .addField("Topic",topic)
             .addField("Time to explain",`${(timeToExplain/60).toFixed(2)} min`)
-            .addField(`For more info use ${prefix}topic -info`);    
+            .addField(`For more info use ${prefix}topic -info`,'');    
                     
 
         React.sendReact(true,message,embed,"send");
@@ -89,8 +89,8 @@ module.exports.run = async (bot,message,args,prefix) => {
             .setTitle("Topic command info")
             .setColor("#9CCC65")            
             
-            .addField(`Use ${prefix}topic -explain to get how long the topic ends`)
-            .addField(`Use ${prefix}topic -end to end topic now (only for admins and topic author)`);    
+            .addField(`Use ${prefix}topic -explain to get how long the topic ends`,'----------')
+            .addField(`Use ${prefix}topic -end to end topic now (only for admins and topic author)`,'----------');    
                     
 
         React.sendReact(true,message,embed,"send");
