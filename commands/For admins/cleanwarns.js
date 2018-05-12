@@ -2,9 +2,8 @@ const Discord = require('discord.js');
 const React = require("../../modules/reacting.js");
 const fs = require('fs');
 
-let warns = JSON.parse(fs.readFileSync("./database/warnings.json", "utf8"));
-
 module.exports.run = async (bot,message,args,prefix) => {
+    let warns = JSON.parse(fs.readFileSync("./database/warnings.json", "utf8"));
     let cleanUser = message.guild.member(message.mentions.users.first() || message.mentions.users.get(args[0]));
     let reason = args.join(" ").slice(22);
     
