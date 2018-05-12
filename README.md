@@ -17,12 +17,12 @@
 - Logs system
 
 ## In progress
-- Bot website
-
-## TODO
 - Providing the possibility of inviting a bot to the server
 - Bot Yanush Dev Discord server
 
+## TODO
+- Mutes time
+- Bot website
 
 ## Commands
 ***Config commands:*** <br />
