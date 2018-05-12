@@ -100,14 +100,14 @@ module.exports.run = async (bot,message,args,prefix) => {
             .setAuthor("Ban")
             .setDescription("ban a user")
             .setColor("#ff0000")
-            .setThumbnail(banUser.user.displayAvatarURL)
+            .setThumbnail(warningUser.user.displayAvatarURL)
 
-            .addField("Banned User", `${banUser} with ID ${banUser.id}`)
+            .addField("Banned User", `${warningUser} with ID ${warningUser.id}`)
             .addField("Reason", 'User have got 5 warnings from administrators');
 
         incidentsChannel.send(embed);
         
-        message.guild.member(banUser).ban('User have got 5 warnings from administrators');
+        message.guild.member(warningUser).ban('User have got 5 warnings from administrators');
     }
     return;
 }
