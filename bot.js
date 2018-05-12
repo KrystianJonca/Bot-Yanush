@@ -205,7 +205,9 @@ bot.on('message',async message => {
             incidentsChannel.send(embed);
             
             try{
-                message.channel.bulkDelete(10);
+                message.channel.bulkDelete(10).then(()=>{
+                    message.channel.send(`Cleared 10 messages sended by ${message.author}`).then((msg => msg.delete(5000)))
+                });
             }catch(err){
                 console.error(err);
             }
