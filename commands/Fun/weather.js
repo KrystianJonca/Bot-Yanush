@@ -6,7 +6,6 @@ module.exports.run = async (bot,message,args,prefix) => {
     let gpuTemp = getRandomInt(20,70);
     let fanSpeed = getRandomInt(1000,2000);
     
-    console.log(`${cpuTemp} ${gpuTemp} ${fanSpeed}`);
 
     let msg = "**CPU:** ";
 
@@ -33,7 +32,7 @@ module.exports.run = async (bot,message,args,prefix) => {
     return React.sendReact(true,message,msg,"send");
 }
 module.exports.config = {
-    name: ["weather","temp"],
+    name: ["temp","weather"],
     args:"",
     description: "Get weather in my current location ( ͡ᵔ ͜ʖ ͡ᵔ )"
 }

@@ -104,7 +104,8 @@ bot.on('message',async message =>{
     if ((command.slice(prefix.length).toLowerCase() != "mute" && command.slice(prefix.length).toLowerCase() != "ban" &&
     command.slice(prefix.length).toLowerCase() != "warn" && command.slice(prefix.length).toLowerCase() != "unmute" && 
     command.slice(prefix.length).toLowerCase() != "report"&& command.slice(prefix.length).toLowerCase() != "kick") && 
-    command.slice(prefix.length).toLowerCase() != "clear" && (message.channel.id != botChannel.id))
+    command.slice(prefix.length).toLowerCase() != "clear" && command.slice(prefix.length).toLowerCase() != "topic" &&
+    (message.channel.id != botChannel.id))
         return React.sendReact(false,message,'Please use commands on specific channel','reply');
 
     if (args[0] === "--info") {      
@@ -212,7 +213,7 @@ bot.on('message',async message => {
                 console.error(err);
             }
 
-            message.channel.send(`Stop spam! I muted you`);
+            message.author.send(`Stop spam! I muted you`);
         }
 
         setTimeout(() => {
