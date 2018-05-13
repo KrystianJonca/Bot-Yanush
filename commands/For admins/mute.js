@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const otherSettings = require('../../config/other-settings.json');
 const React = require("../../modules/reacting.js");
+const fs = require('fs');
 
 module.exports.run = async (bot,message,args,prefix) => {
     if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("You don't have require permission!");
