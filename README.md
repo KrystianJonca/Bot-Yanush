@@ -3,7 +3,7 @@
 
 ![Bot avatar](https://raw.githubusercontent.com/KrystianJonca/Bot-Yanush/master/assets/avatar.png) 
 
-**Invite:** https://bit.ly/2wiPNYS
+**Invite:** http://bit.ly/Yinvite
 
 ## Info
 - **Bot name:** Bot Yanush
