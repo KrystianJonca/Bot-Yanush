@@ -131,7 +131,7 @@ bot.on('message',async message =>{
     if (!command.startsWith(prefix)) return;
 
     let incidentsChannel = message.guild.channels.find('name','incidents');
-    let topicChannel = message.guild.channels.find('name','topic');
+    let topicChannel = message.guild.channels.find('name','topics');
     let reportsChannel = message.guild.channels.find('name','reports');
     let botChannel = message.guild.channels.find('name','bot');
     

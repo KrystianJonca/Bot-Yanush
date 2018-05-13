@@ -8,7 +8,7 @@ let topicMsg = 0;
 let topicTime = 0;
 
 module.exports.run = async (bot,message,args,prefix) => {
-    let topicChannel = message.guild.channels.find('name','topic');
+    let topicChannel = message.guild.channels.find('name','topics');
     if(message.channel.parentID !== topicChannel.parentID) return React.sendReact(false,message,"You can only add topic on specific category!","reply");
 
     let topic = args.join(" ");
