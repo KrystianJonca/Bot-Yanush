@@ -57,7 +57,7 @@ module.exports.run = async (bot,message,args,prefix) => {
             guild: message.guild.id,
             time: Date.now() + parseInt(muteTime) * 60000
         }
-        fs.writeFile("./mutes.json",JSON.stringify(bot.mutes,null,4),err => {
+        fs.writeFile("./databese/mutes.json",JSON.stringify(bot.mutes,null,4),err => {
             if(err) console.error(err);
         })
     }

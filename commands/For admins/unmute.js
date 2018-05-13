@@ -35,7 +35,7 @@ module.exports.run = async (bot,message,args,prefix) => {
 
     let incidentsChannel = message.guild.channels.find('name',"incidents")
 
-    fs.writeFile("./mutes.json",JSON.stringify(bot.mutes),err => {
+    fs.writeFile("./database/mutes.json",JSON.stringify(bot.mutes),err => {
         if(err) console.error(err);
         incidentsChannel.send(embed); 
     });
