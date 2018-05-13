@@ -41,7 +41,7 @@ bot.on('ready',() =>{
     bot.user.setUsername(botSettings.bot_username);
     bot.user.setAvatar(botSettings.avatar_location);
 
-    let interval = 10000;
+    let interval = 1800000;
     let activityArray = [
         `with ${bot.users.size} users!`,
         `on ${bot.guilds.size} servers`,
