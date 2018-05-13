@@ -70,30 +70,22 @@ module.exports.run = async (bot,message,args,prefix) => {
             .setThumbnail(warningUser.user.displayAvatarURL)
     
             .addField("Muted User", `${warningUser} with ID ${warningUser.id}`)
-            .addField("Mute time", muteTime)                
+            .addField("Mute time", `${muteTime} min`)                
             .addField("Reason", 'User have got 3 warnings from administrators');
     
         if (warningUser.roles.has(role.id)) return;
-    
+
+        bot.mutes[warningUser.id] = {
+            guild: message.guild.id,
+            time: Date.now() + parseInt(muteTime) * 60000
+        }
+        fs.writeFile("./database/mutes.json",JSON.stringify(bot.mutes,null,4),err => {
+            if(err) console.error(err);
+        })
+
         await warningUser.addRole(role);
     
         incidentsChannel.send(embed);
-
-        if (muteTime == 0) return;
-        else{
-            setTimeout(()=>{
-                let embed = new Discord.RichEmbed()
-                    .setAuthor("Mute time passed")
-                    .setDescription("Auto unmute")
-                    .setColor("#4CAF50")
-                
-                    .addField("Unmuted User", `${warningUser} with ID ${warningUser.id}`)
-    
-                    warningUser.removeRole(role);
-    
-                return incidentsChannel.send(embed);      
-            },muteTime * 60000);
-        };
     }
     if (warns[warningUser.id].warnings === 5) {
         let embed = new Discord.RichEmbed()

@@ -233,8 +233,17 @@ bot.on('message',async message => {
 
                 .addField("Muted User", `${message.author} with ID ${message.author.id}`)                
                 .addField("Reason", "Spamming messages")        
+                .addField("Mute time", `${muteTime} min`)                        
                 .addField("Muted at", message.createdAt)
                 .addField("Channel", message.channel);
+
+            bot.mutes[message.user.id] = {
+                guild: message.guild.id,
+                time: Date.now() + parseInt(muteTime) * 60000
+            }
+            fs.writeFile("./database/mutes.json",JSON.stringify(bot.mutes,null,4),err => {
+                if(err) console.error(err);
+            })
 
             await message.member.addRole(role);
 
