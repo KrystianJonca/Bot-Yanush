@@ -43,11 +43,11 @@ bot.on('ready',() =>{
 
     let interval = 1800000;
     let activityArray = [
-        `with ${bot.users.size} users!`,
-        `on ${bot.guilds.size} servers`,
-        `on ${bot.channels.size} channels`, 
-        `for ${(bot.uptime/3600000).toFixed(2)} h!`, 
-        `with ${bot.ping} ping!`
+        `z ${bot.users.size} urzytkownikami!`,
+        `na ${bot.guilds.size} serwerach`,
+        `na ${bot.channels.size} kanałach`, 
+        `przez ${(bot.uptime/3600000).toFixed(2)} h!`, 
+        `z ${bot.ping} ping!`
     ];
 
     let activityNumber = Math.floor(Math.random()*activityArray.length);
@@ -57,11 +57,11 @@ bot.on('ready',() =>{
 
     setInterval(() => {
         activityArray = [
-            `with ${bot.users.size} users!`,
-            `on ${bot.guilds.size} servers`,
-            `on ${bot.channels.size} channels`, 
-            `for ${(bot.uptime/3600000).toFixed(1)} h!`, 
-            `with ${(bot.ping).toFixed(0)} ping!`
+            `z ${bot.users.size} urzytkownikami!`,
+            `na ${bot.guilds.size} serwerach`,
+            `na ${bot.channels.size} kanałach`, 
+            `przez ${(bot.uptime/3600000).toFixed(2)} h!`, 
+            `z ${bot.ping} ping!`
         ];
 
         activityNumber = Math.floor(Math.random()*activityArray.length);
@@ -86,12 +86,12 @@ bot.on('ready',() =>{
 
             if (Date.now() > time) {
                 let embed = new Discord.RichEmbed()
-                   .setAuthor("Mute time passed")
+                   .setAuthor("Czas muta minoł")
                    .setDescription("Auto unmute")
                    .setColor("#4CAF50")
             
-                   .addField("Unmuted User", `${member} with ID ${member.id}`)
-                   .addField("Mute at",`${time} (unix time)`);
+                   .addField("Unmutowany urzytkownik", `${member} z ID ${member.id}`)
+                   .addField("Zmutowany o",`${time} (unix time)`);
  
                 member.removeRole(role);
                 delete bot.mutes[i];
@@ -135,14 +135,14 @@ bot.on('message',async message =>{
     let reportsChannel = message.guild.channels.find('name','reports');
     let botChannel = message.guild.channels.find('name','bot');
     
-    if (!(incidentsChannel || topicChannel || reportsChannel || botChannel)) return React.sendReact(false,message,"Can't find require channel, visit my website to check how to configurate server for me","send");
+    if (!(incidentsChannel || topicChannel || reportsChannel || botChannel)) return React.sendReact(false,message,"Nie można znaleść wymaganych kanałów","send");
     
     if ((command.slice(prefix.length).toLowerCase() != "mute" && command.slice(prefix.length).toLowerCase() != "ban" &&
     command.slice(prefix.length).toLowerCase() != "warn" && command.slice(prefix.length).toLowerCase() != "unmute" && 
     command.slice(prefix.length).toLowerCase() != "report"&& command.slice(prefix.length).toLowerCase() != "kick") && 
     command.slice(prefix.length).toLowerCase() != "clear" && command.slice(prefix.length).toLowerCase() != "topic" &&
     (message.channel.id != botChannel.id))
-        return React.sendReact(false,message,'Please use commands on specific channel','reply');
+        return React.sendReact(false,message,'Prosze urzywać komend na określonym kanale','reply');
 
     if (args[0] === "--info") {      
         commandInfo(command,message,prefix);
@@ -150,7 +150,7 @@ bot.on('message',async message =>{
     }
 
     if (coolDown.has(sender.id)) {
-        React.sendReact(false,message,`You have to wait ${coolDownSec} seconds between commands`,'reply');
+        React.sendReact(false,message,`Musisz poczekać ${coolDownSec} sekund przed nastempnym urzyciem komendy`,'reply');
         return;
     }
     
@@ -159,7 +159,7 @@ bot.on('message',async message =>{
         coolDown.add(sender.id);
     }else{
         message.delete();
-        message.reply(`Your massage was deleted because this command does not exist! Type \`${prefix}help\` to get the avaiable command list!`);
+        message.reply(`Twoja wiadomosc zostala usunieta poniewarz dana komenda nie istnieje! Wpisz \`${prefix}help\` aby dostac listę dostępnych komend!`);
         return;
     }
     
@@ -188,7 +188,7 @@ bot.on('message',async message => {
         //Auto writing with caps lock detector
         if (message.content === message.content.toUpperCase()) {
             message.delete();
-            message.reply("Turn off caps!");
+            message.reply("Wyłącz capsa!");
             return;
         }
         //Auto spam mute
@@ -227,15 +227,15 @@ bot.on('message',async message => {
             
             let embed = new Discord.RichEmbed()
                 .setAuthor("Auto mute")
-                .setDescription("Mute a user")
+                .setDescription("Zmutowanie urzytkownika")
                 .setColor("#ff0000")
                 .setThumbnail(message.author.displayAvatarURL)
 
-                .addField("Muted User", `${message.author} with ID ${message.author.id}`)                
-                .addField("Reason", "Spamming messages")        
-                .addField("Mute time", `${muteTime} min`)                        
-                .addField("Muted at", message.createdAt)
-                .addField("Channel", message.channel);
+                .addField("Zmutowany urzytkownik", `${message.author} with ID ${message.author.id}`)                
+                .addField("Powód", "Spamowanie wiadomosciami")        
+                .addField("Czas muta", `${muteTime} min`)                        
+                .addField("Zmutowany o", message.createdAt)
+                .addField("Kanał", message.channel);
 
             bot.mutes[message.user.id] = {
                 guild: message.guild.id,
@@ -252,13 +252,13 @@ bot.on('message',async message => {
             
             try{
                 message.channel.bulkDelete(10).then(()=>{
-                    message.channel.send(`Cleared 10 messages sended by ${message.author}`).then((msg => msg.delete(5000)))
+                    message.channel.send(`Wyczyszczonno 10 wiadomości wysłanych prez ${message.author}`).then((msg => msg.delete(5000)))
                 });
             }catch(err){
                 console.error(err);
             }
 
-            message.author.send(`Stop spam! I muted you`);
+            message.author.send(`Przestań spamować! Zmutowałem Cie`);
         }
 
         setTimeout(() => {
@@ -269,11 +269,11 @@ bot.on('message',async message => {
     }
 });
 bot.on("guildCreate", guild => {
-    console.log(`Joined a new guild: ${guild.name}(id: ${guild.id}). This guild has ${guild.memberCount} members!`);
+    console.log(`Dołączyłem do serwera: ${guild.name}(id: ${guild.id}). Ten serwer ma ${guild.memberCount} urzytkowników!`);
 })
 
 bot.on("guildDelete", guild => {
-    console.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
+    console.log(`Zostałem usunięty z servera: ${guild.name} (id: ${guild.id})`);
 })
 bot.on("debug", info => {
     console.log(info);
@@ -306,7 +306,7 @@ function commandInfo(cmd,message,prefix){
 
                         let embed = new Discord.RichEmbed()
                             .setAuthor("Command")
-                            .setDescription(`\`${cmds.config.name.join("/")}\`This command must starts with \`${prefix}\``)
+                            .setDescription(`\`${cmds.config.name.join("/")}\`Ta komenda musi zaczynać się od \`${prefix}\``)
                             .setColor("#90CAF9")
 
                             .addField("Usage", `\`${prefix}${cmds.config.name.join("/")} ${cmds.config.args}\``)
@@ -318,7 +318,7 @@ function commandInfo(cmd,message,prefix){
                     }
                     if (folders.length-1 === index && jsfiles.length-1 === i) {
                         if (!commandExist) {
-                            React.sendReact(false,message,`I can't give you information about this command beacause it does not exist! Type \`${prefix}help\` to get the avaiable command list!`,'reply');
+                            React.sendReact(false,message,`Nie mogę podac Ci informacji o tej komendzię poniewarz ona nie istnieje! Wpisz \`${prefix}help\` aby dostac listę dostępnych komend!`,'reply');
                             return;   
                         }
                     }
