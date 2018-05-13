@@ -3,6 +3,7 @@ const React = require("../../modules/reacting.js");
 const fs = require('fs');
 
 module.exports.run = async (bot,message,args,prefix) => {
+    if (!message.member.hasPermission("KICK_MEMBERS")) return React.sendReact(false,message,"You don't have require permission!","reply");    
     let warns = JSON.parse(fs.readFileSync("./database/warnings.json", "utf8"));
     let cleanUser = message.guild.member(message.mentions.users.first() || message.mentions.users.get(args[0]));
     let reason = args.join(" ").slice(22);
@@ -11,7 +12,6 @@ module.exports.run = async (bot,message,args,prefix) => {
     if (cleanUser.id === message.author.id) return React.sendReact(false,message,"You cannot clean warns yourself!","reply");
     if (cleanUser.id === bot.user.id) return React.sendReact(false,message,"I dont't have warns","send");
     if (!reason) return React.sendReact(false,message,"You must give a reason!","reply");
-    if (!message.member.hasPermission("KICK_MEMBERS")) return React.sendReact(false,message,"You don't have require permission!","reply");
     if (cleanUser.hasPermission("KICK_MEMBERS")) return React.sendReact(false,message,"That person can't be warned!","reply");
     if (!warns[cleanUser.id]) return React.sendReact(false,message,"That user doesn't have warns!","reply")
 

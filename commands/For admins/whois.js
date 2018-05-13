@@ -2,10 +2,10 @@ const Discord = require('discord.js');
 const React = require("../../modules/reacting.js");
 
 module.exports.run = async (bot,message,args,prefix) => {
+    if (!message.member.hasPermission("MANAGE_MESSAGES")) return React.sendReact(false,message,"You don't have require permission!","reply");    
     let mentionUser = message.guild.member(message.mentions.users.first() || message.mentions.users.get(args[0]));
 
     if (!mentionUser) return React.sendReact(false,message,"You did not specify a user mention or ID!","reply");
-    if (!message.member.hasPermission("MANAGE_MESSAGES")) return React.sendReact(false,message,"You don't have require permission!","send");
     if (message.author.id === mentionUser.id) return React.sendReact(false,message,`Use ${prefix}userinfo`,"reply");
     if (mentionUser.id === bot.user.id) return React.sendReact(false,message,`Use ${prefix}botinfo`,"reply");
     

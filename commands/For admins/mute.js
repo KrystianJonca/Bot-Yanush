@@ -3,6 +3,7 @@ const otherSettings = require('../../config/other-settings.json');
 const React = require("../../modules/reacting.js");
 
 module.exports.run = async (bot,message,args,prefix) => {
+    if (!message.member.hasPermission("MANAGE_MESSAGES")) return React.sendReact(false,message,"You don't have require permission!","send");    
     let muteUser = message.guild.member(message.mentions.users.first() || message.mentions.users.get(args[0]));
     let role = message.guild.roles.find(r => r.name === "Muted");
     let reason = args.join(" ").slice(22);
@@ -11,7 +12,6 @@ module.exports.run = async (bot,message,args,prefix) => {
     if (muteUser.id === message.author.id) return React.sendReact(false,message,"You cannot mute yourself!","reply");
     if (muteUser.id === bot.user.id) return React.sendReact(false,message,"I'm not a moron( ͡° ͜ʖ ͡°)","reply");
     if (!reason) return React.sendReact(false,message,"You must give a reason!","reply");
-    if (!message.member.hasPermission("MANAGE_MESSAGES")) return React.sendReact(false,message,"You don't have require permission!","send");
     if (muteUser.hasPermission("MANAGE_MESSAGES")) return React.sendReact(false,message,"That person can't be Muted!","send");
 
     try {    
