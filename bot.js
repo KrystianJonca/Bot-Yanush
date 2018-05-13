@@ -71,7 +71,6 @@ bot.on('ready',() =>{
 
     console.log('Bot is ready to use!');
 
-    let incidentsChannel = message.guild.channels.find('name','incidents');
     
     bot.setInterval(() => {
         for (let i in bot.mutes) {
@@ -82,6 +81,8 @@ bot.on('ready',() =>{
 
             let role = guild.roles.find(r => r.name === "Muted");
             if(!role) continue;
+
+            let incidentsChannel = guild.channels.find('name','incidents');
 
             if (Date.now() > time) {
                 let embed = new Discord.RichEmbed()
