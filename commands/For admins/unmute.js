@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const otherSettings = require('../../config/other-settings.json');
 const React = require("../../modules/reacting.js");
+const fs = require('fs');
 
 module.exports.run = async (bot,message,args,prefix) => {
     if (!message.member.hasPermission("MANAGE_MESSAGES")) return React.sendReact(false,message,"You don't have require permission!","reply");    
@@ -28,10 +29,16 @@ module.exports.run = async (bot,message,args,prefix) => {
 
     if (!role || !muteUser.roles.has(role.id)) return message.channel.send("This user is not muted!")
 
-    await muteUser.removeRole(role);
+    muteUser.removeRole(role);
+
+    delete bot.mutes[muteUser.id];
 
     let incidentsChannel = message.guild.channels.find('name',"incidents")
-    incidentsChannel.send(embed);
+
+    fs.writeFile("./mutes.json",JSON.stringify(bot.mutes),err => {
+        if(err) console.error(err);
+        incidentsChannel.send(embed); 
+    });
     
     React.sendReact(true,message,"User Unmuted!","send");
 

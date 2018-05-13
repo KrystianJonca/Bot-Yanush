@@ -10,6 +10,7 @@ const bot = new Discord.Client();
 const coolDownSec = otherSettings.commands_cooldown;
 const coolDown = new Set();
 
+bot.mutes = require("./database/mutes.json");
 bot.commands = new Discord.Collection();
 
 fs.readdir('./commands/',(err,folders) =>{
@@ -69,6 +70,40 @@ bot.on('ready',() =>{
     },interval);
 
     console.log('Bot is ready to use!');
+
+    let incidentsChannel = message.guild.channels.find('name','incidents');
+    
+    bot.setInterval(() => {
+        for (let i in bot.mutes) {
+            let time = bot.mutes[i].time;
+            let guildId = bot.mutes[i].guild;
+            let guild = bot.guilds.get(guildId);
+            let member = guild.members.get(i);
+
+            let role = guild.roles.find(r => r.name === "Muted");
+            if(!role) continue;
+
+            if (Date.now() > time) {
+                let embed = new Discord.RichEmbed()
+                   .setAuthor("Mute time passed")
+                   .setDescription("Auto unmute")
+                   .setColor("#4CAF50")
+            
+                   .addField("Unmuted User", `${member} with ID ${member.id}`)
+                   .addField("Mute at",`${time} (unix time)`);
+ 
+                member.removeRole(role);
+                delete bot.mutes[i];
+
+                fs.writeFile("./mutes.json",JSON.stringify(bot.mutes),err => {
+                    if(err) console.error(err);
+                    incidentsChannel.send(embed); 
+                    
+                });
+                
+            }
+        }
+    },5000);
 });
 bot.on('message',async message =>{
     if (message.author.bot) return;
