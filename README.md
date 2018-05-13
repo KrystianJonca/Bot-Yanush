@@ -13,7 +13,7 @@
 2. Create category for forum system one of the channels in this category must be named
  -topics
 
-**An example of the server structure:**
+**An example of the server structure:**<br />
 -bot(category)
  - bot(channel for using commands)
  - incidents(private channel for admins)
