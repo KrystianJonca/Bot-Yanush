@@ -53,7 +53,7 @@
 **1:** Y!ban @user (reason) | **Description:**  Ban a user(permission require) <br />
 **2:** Y!clear (how much message to clear) | **Description:**  Clear messages <br />
 **3:** Y!kick @user (reason) | **Description**:  Kick a user(permission require) <br />
-**4:** Y!mute @user (reason) | **Description:**  Mute a user(permission require) <br />
+**4:** Y!mute @user (time in min (optional)) (reason) | **Description:**  Mute a user(permission require) <br />
 **5:** Y!unmute @user (reason) | **Description:**  Mute a user(permission require) <br />
 **6:** Y!warn @user (reason) | **Description:**  Warn a user(3 warns - mute on 15 min, 5 warns - ban)<br />
 **7:** Y!whois @user | **Description:**  Mention user info <br />
