@@ -4,6 +4,26 @@
 ![Bot avatar](https://raw.githubusercontent.com/KrystianJonca/Bot-Yanush/master/assets/avatar.png) 
 
 **Invite:** http://bit.ly/Yinvite
+## Configurate server
+1. Create channels required for proper operation of the bot. Channels names:
+ -incidents
+ -reports
+ -bot
+ 
+2. Create category for forum system one of the channels in this category must be named
+ -topics
+
+**An example of the server structure:**
+-bot(category)
+ - bot(channel)
+ - incidents(private channel for admins)
+ - reports(private channel for admins)
+
+-forum(category)
+ - topics
+ - topics-1
+ - topics-2
+ 
 
 ## Info
 - **Bot name:** Bot Yanush
