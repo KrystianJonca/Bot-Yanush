@@ -15,7 +15,7 @@
 
 **An example of the server structure:**
 -bot(category)
- - bot(channel)
+ - bot(channel for using commands)
  - incidents(private channel for admins)
  - reports(private channel for admins)
 
