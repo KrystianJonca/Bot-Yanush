@@ -17,12 +17,12 @@
 - Reacting on messages when command is execution
 - Large config capabilities
 - Logs system
+- Modern mutes system
 
 ## In progress
 - Bot Yanush Dev Discord server
 
 ## TODO
-- Mutes time
 - Bot website
 
 ## Commands
