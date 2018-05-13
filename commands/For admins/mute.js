@@ -48,7 +48,7 @@ module.exports.run = async (bot,message,args,prefix) => {
         .addField("Muted User", `${muteUser} with ID ${muteUser.id}`)
         .addField("Muted By", `${message.author} with ID ${message.author.id}`)              
         .addField("Reason", reason) 
-        .addField("Mute time", `${muteTime} min`)                       
+        .addField("Mute time", `${(muteTime===0) ? "An indefinite period of time" : muteTime + "min"}`)                       
         .addField("Muted at", message.createdAt)
         .addField("Channel", message.channel);
 
