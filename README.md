@@ -15,14 +15,14 @@
 
 **An example of the server structure:**<br />
 - bot(category)
- - bot(channel for using commands)
- - incidents(private channel for admins)
- - reports(private channel for admins)
+  - bot(channel for using commands)
+  - incidents(private channel for admins)
+  - reports(private channel for admins)
 
 - forum(category)
- - topics
- - topics-1
- - topics-2
+  - topics
+  - topics-1
+  - topics-2
  
 
 ## Info
