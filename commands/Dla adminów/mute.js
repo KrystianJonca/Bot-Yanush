@@ -4,7 +4,7 @@ const React = require("../../modules/reacting.js");
 const fs = require('fs');
 
 module.exports.run = async (bot,message,args,prefix) => {
-    if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("You don't have require permission!");
+    if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("Nie masz wymaganego pozwolenia!");
 
     let muteUser = message.guild.member(message.mentions.users.first() || message.mentions.users.get(args[0]));
     let role = message.guild.roles.find(r => r.name === "Muted");
@@ -12,11 +12,11 @@ module.exports.run = async (bot,message,args,prefix) => {
     let reason = args.join(" ").slice(isNaN(muteTime) ? 22 : 22 + muteTime.length);
     if (isNaN(muteTime)) muteTime = 0;        
 
-    if (!muteUser) return message.reply("You did not specify a user mention or ID!");
-    if (muteUser.id === message.author.id) return message.reply("You cannot mute yourself!");
-    if (muteUser.id === bot.user.id) return message.reply("I'm not a moron( ͡° ͜ʖ ͡°)");
-    if (!reason) return message.reply("You must give a reason!");
-    if (muteUser.hasPermission("MANAGE_MESSAGES")) return message.reply("That person can't be Muted!");
+    if (!muteUser) return message.reply("Nie podałeś oznaczenia urzytkownika lub jego ID!");
+    if (muteUser.id === message.author.id) return message.reply("Nie możesz wyciszyć samego siebie!");
+    if (muteUser.id === bot.user.id) return message.reply("Nie możesz wykonywać tej operacji na mnie");
+    if (!reason) return message.reply("Musisz podać powód!");
+    if (muteUser.hasPermission("MANAGE_MESSAGES")) return message.reply("Ta osoba nie może zostać wyciszona!");
 
     try {    
         if (!role) {
@@ -37,20 +37,20 @@ module.exports.run = async (bot,message,args,prefix) => {
         console.error(error.stack);        
     }
     
-    if (muteUser.roles.has(role.id)) return message.reply("This user is already muted!");
+    if (muteUser.roles.has(role.id)) return message.reply("Ten urzytkownik jest już wyciszony!");
 
     let embed = new Discord.RichEmbed()
-        .setAuthor("Mute")
-        .setDescription("Mute a user")
+        .setAuthor("Wyciszenie")
+        .setDescription("Wyciszenie urzytkownika")
         .setColor("#ff0000")
         .setThumbnail(muteUser.user.displayAvatarURL)
 
-        .addField("Muted User", `${muteUser} with ID ${muteUser.id}`)
-        .addField("Muted By", `${message.author} with ID ${message.author.id}`)              
-        .addField("Reason", reason) 
-        .addField("Mute time", `${(muteTime==0) ? "An indefinite period of time" : muteTime + "min"}`)                       
-        .addField("Muted at", message.createdAt)
-        .addField("Channel", message.channel);
+        .addField("Wyciszono", `${muteUser} with ID ${muteUser.id}`)
+        .addField("Wyciszono przez", `${message.author} with ID ${message.author.id}`)              
+        .addField("Powód", reason) 
+        .addField("Czas wyciszenia", `${(muteTime==0) ? "Na czas nieokreślony" : muteTime + "min"}`)                       
+        .addField("Wyciszono o", message.createdAt)
+        .addField("Kanał", message.channel);
 
     if (muteTime !== 0) {
         bot.mutes[muteUser.id] = {
@@ -67,10 +67,10 @@ module.exports.run = async (bot,message,args,prefix) => {
     let incidentsChannel = message.guild.channels.find('name',"incidents");
     incidentsChannel.send(embed);
     
-    message.reply(`User Muted!`);
+    message.reply(`Wyciszono!`);
 }
 module.exports.config = {
     name: ["mute"],
-    args:"@user <mute time in min (optional)> <reason>",
-    description: "Mute a user(permission require)"  
+    args:"@oznaczenie <czas wyciszenia (opcjonalnie)> <powód>",
+    description: "Wyciszenie urzytkownika(wymagane pozwolenie)"  
 }

@@ -5,8 +5,8 @@ const React = require("../../modules/reacting.js");
 module.exports.run = async (bot,message,args,prefix) => {
     let boolToSet = (args[0]=="on") ? true : false;
     
-    if (!message.member.hasPermission("MANAGE_SERVER")) return React.sendReact(false,message,"You don't have require permission!","reply");
-    if (args[0] !== "on" &&  args[0] !== "off") return React.sendReact(false,message,"You must turn on/off auto spam mute and auto caps lock alert function","reply");
+    if (!message.member.hasPermission("MANAGE_SERVER")) return React.sendReact(false,message,"Nie masz wymaganego pozwolenia!","reply");
+    if (args[0] !== "on" &&  args[0] !== "off") return React.sendReact(false,message,"Musisz włączyć(on) lub wyłączyć(off) funkcje AI","reply");
 
     let aiSettings = JSON.parse(fs.readFileSync("./database/ai-settings.json","utf8"));
     
@@ -19,8 +19,8 @@ module.exports.run = async (bot,message,args,prefix) => {
     });
 
     let embed = new Discord.RichEmbed()
-        .setTitle("AI functions - Auto spam mute and auto caps lock alert")
-        .setDescription(`Turn ${boolToSet ? "on" : "off"}`)
+        .setTitle("Funkcjie AI - Auto spam mute i auto caps lock alert")
+        .setDescription(`${boolToSet ? "Włączono" : "Wyłączono"}`)
         .setColor("#1E88E5");
 
     React.sendReact(true,message,embed,"send");
@@ -30,5 +30,5 @@ module.exports.run = async (bot,message,args,prefix) => {
 module.exports.config = {
     name: ["ai"],
     args:"<on/off>",
-    description: "Auto spam mute and auto writing with caps lock alert functions(defualt in turn off)"
+    description: "Auto spam mute i auto pisanie z caps lock alert functions(domyślnie wyłączone)"
 }   

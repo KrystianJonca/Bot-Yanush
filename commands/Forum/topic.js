@@ -9,12 +9,12 @@ let topicTime = 0;
 
 module.exports.run = async (bot,message,args,prefix) => {
     let topicChannel = message.guild.channels.find('name','topics');
-    if(message.channel.parentID !== topicChannel.parentID) return React.sendReact(false,message,"You can only add topic on specific category!","reply");
+    if(message.channel.parentID !== topicChannel.parentID) return React.sendReact(false,message,"Możesz otwierać nowe tematy tylko na określonej kategori!","reply");
 
     let topic = args.join(" ");
     let topicAuthor = message.author;
     
-    if (!topic) return React.sendReact(false,message,"You must give a topic!","reply");
+    if (!topic) return React.sendReact(false,message,"Musisz dać temat!","reply");
 
     switch (topic) {
         case "-end":
@@ -32,20 +32,20 @@ module.exports.run = async (bot,message,args,prefix) => {
     }
 
     function newTopic(){
-        if (!canAddTopic) return React.sendReact(false,message,"You can't add a new topic because other topic is already exist!","reply");
+        if (!canAddTopic) return React.sendReact(false,message,"Nie możesz dodać tematu na tym kanale poniewarz inny już istnieje!","reply");
         
         canAddTopic = false;
 
         topicAuthor = message.author;
 
         let embed = new Discord.RichEmbed()
-            .setTitle("New topic")
+            .setTitle("Nowy temat")
             .setColor("#9CCC65")            
             
-            .addField("Author",topicAuthor)
-            .addField("Topic",topic)
-            .addField("Time to explain",`${(timeToExplain/60).toFixed(2)} min`)
-            .addField(`For more info use ${prefix}topic -info`,'');    
+            .addField("Autor",topicAuthor)
+            .addField("Temat",topic)
+            .addField("Pozostały czas",`${(timeToExplain/60).toFixed(2)} min`)
+            .addField(`Po więcej informacji urzyj ${prefix}topic -info`,'');    
                     
 
         React.sendReact(true,message,embed,"send");
@@ -67,12 +67,12 @@ module.exports.run = async (bot,message,args,prefix) => {
                 clearInterval(interval);
 
                 let embed = new Discord.RichEmbed()
-                    .setAuthor("Topic time explain")
-                    .setDescription("Now everyone can add a new topic!")
+                    .setAuthor("Czas tematu minął")
+                    .setDescription("Teraz każdy może dodać nowy temat!")
                     .setColor("#9CCC65")
                     
-                    .addField("Message sended",topicMsg)
-                    .addField("Topic time",`${(topicTime/60).toFixed(2)} min`);   
+                    .addField("Wysłane wiadomości",topicMsg)
+                    .addField("Czas tematu",`${(topicTime/60).toFixed(2)} min`);   
 
                 topicTime = 0;
                 topicMsg = 0;
@@ -86,30 +86,30 @@ module.exports.run = async (bot,message,args,prefix) => {
     }
     function info (){
         let embed = new Discord.RichEmbed()
-            .setTitle("Topic command info")
+            .setTitle("Informacje tematu")
             .setColor("#9CCC65")            
             
-            .addField(`Use ${prefix}topic -explain to get how long the topic ends`,'----------')
-            .addField(`Use ${prefix}topic -end to end topic now (only for admins and topic author)`,'----------');    
+            .addField(`Urzyj ${prefix}topic -explain`,'Aby dostać czas do końca tematu')
+            .addField(`Urzyj ${prefix}topic -end `,'Aby zakończyć temat(tylko dla autorów i adminów)');    
                     
 
         React.sendReact(true,message,embed,"send");
     }
     function endTopic(){
-        if (canAddTopic) return React.sendReact(false,message,"You can't end not started topic!","reply");        
-        if (topicAuthor !== message.author || !message.member.hasPermission("KICK_MEMBERS")) return React.sendReact(false,message,"Only topic author and admins can end a topic!","reply");        
+        if (canAddTopic) return React.sendReact(false,message,"Nie możesz zakończyć nie zaczętego tematu!","reply");        
+        if (topicAuthor !== message.author || !message.member.hasPermission("KICK_MEMBERS")) return React.sendReact(false,message,"Tylko autor tematu i administratot może zakończyć temat!","reply");        
 
         topicAuthor = null; 
         timeToExplain = 0;
         canAddTopic = true;
 
         let embed = new Discord.RichEmbed()
-            .setTitle("Topic ended")
-            .setDescription("Now everyone can add a new topic!")
+            .setTitle("Temat zakończony")
+            .setDescription("Teraz każdy może dodać nowy temat!!")
             .setColor("#9CCC65")
                 
-            .addField("Message sended ",topicMsg)
-            .addField("Topic time",`${(topicTime/60).toFixed(2)} min`);        
+            .addField("Wysłąne wiadomości",topicMsg)
+            .addField("Czas tematu",`${(topicTime/60).toFixed(2)} min`);        
 
         topicTime = 0;
         topicMsg = 0;
@@ -119,14 +119,14 @@ module.exports.run = async (bot,message,args,prefix) => {
         return;
     }
     function explain(){
-        if (canAddTopic) return React.sendReact(false,message,"You can't get a topic time to explain because currently there is no topic created","reply");
+        if (canAddTopic) return React.sendReact(false,message,"Nie możesz dostać czasu do zakończenia nie zaczętego tematu","reply");
         
-        React.sendReact(true,message,`Time to explain: ${(timeToExplain/60).toFixed(2)} min`,"send");
+        React.sendReact(true,message,`Czas do zakończenia: ${(timeToExplain/60).toFixed(2)} min`,"send");
     }
    
 }
 module.exports.config = {
     name: ["topic"],
-    args:"<topic content>",
-    description: "Create new topic",
+    args:"<temat>",
+    description: "Stwórz nowy temat",
 }   

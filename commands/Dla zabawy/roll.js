@@ -3,12 +3,12 @@ const React = require('../../modules/reacting.js');
 module.exports.run = async (bot,message,args) => {
     let roll = Math.floor(Math.random()*6)+1;
 
-    React.sendReact(true,message,`You rolled a ${roll}`,"reply");
+    React.sendReact(true,message,`Wylosowałeś ${roll}`,"reply");
 
     return;
 }
 module.exports.config = {
     name: ["roll","dice"],
     args:"",
-    description: "Roll a random number between 0-6!"
+    description: "Wylosój randomową liczbę od 0 do 6!"
 }

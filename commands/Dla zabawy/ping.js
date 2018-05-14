@@ -7,6 +7,6 @@ module.exports.run = async (bot,message,args) => {
 module.exports.config = {
     name: ["ping"],
     args:"",
-    description: "Get a current ping( ͡° ͜ʖ ͡°)!"
+    description: "Zobacz swój ping!"
 
 }   

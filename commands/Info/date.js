@@ -12,5 +12,5 @@ module.exports.run = async (bot,message,args) => {
 module.exports.config = {
     name: ["date","time"],
     args:"",
-    description: "Get a current date!"
+    description: "Dostań obecną datę!"
 }   

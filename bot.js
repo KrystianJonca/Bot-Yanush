@@ -20,10 +20,10 @@ fs.readdir('./commands/',(err,folders) =>{
             
             let jsfiles = files.filter(f => f.split(".").pop() === "js");
             if (jsfiles.length <= 0) {
-                console.log("No commands to load!");
+                console.log("Brak komand do załadowania!");
                 return;
             }
-            console.log(`Loading ${jsfiles.length} commands in ${folder} folder!`);
+            console.log(`Ładowanie ${jsfiles.length} komend w folderze ${folder}!`);
 
             jsfiles.forEach((f,i) => {
                 let cmds = require(`./commands/${folder}/${f}`);
@@ -69,7 +69,7 @@ bot.on('ready',() =>{
         bot.user.setActivity(activityArray[activityNumber]);
     },interval);
 
-    console.log('Bot is ready to use!');
+    console.log('Bot gotowy do urzytkowania!');
 
     
     bot.setInterval(() => {

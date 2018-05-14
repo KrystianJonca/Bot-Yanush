@@ -5,15 +5,15 @@ const fs = require('fs');
 let warns = JSON.parse(fs.readFileSync("./database/warnings.json", "utf8"));
 
 module.exports.run = async (bot,message,args,prefix) => {
-    if (!message.member.hasPermission("KICK_MEMBERS")) return React.sendReact(false,message,"You don't have require permission!","reply");    
+    if (!message.member.hasPermission("KICK_MEMBERS")) return React.sendReact(false,message,"Nie masz wymaganego pozwolenia!","reply");    
     let warningUser = message.guild.member(message.mentions.users.first() || message.mentions.users.get(args[0]));
     let reason = args.join(" ").slice(22);
     
-    if (!warningUser) return React.sendReact(false,message,"You did not specify a user mention or ID!","reply");
-    if (warningUser.id === message.author.id) return React.sendReact(false,message,"You cannot warning yourself!","reply");
-    if (warningUser.id === bot.user.id) return React.sendReact(false,message,"I'm not a moron( ͡° ͜ʖ ͡°)","send");
-    if (!reason) return React.sendReact(false,message,"You must give a reason!","reply");
-    if (warningUser.hasPermission("KICK_MEMBERS")) return React.sendReact(false,message,"That person can't be warned!","reply");
+    if (!warningUser) return React.sendReact(false,message,"Nie podałeś oznaczenia urzytkownika lub jego ID!","reply");
+    if (warningUser.id === message.author.id) return React.sendReact(false,message,"Nie możesz ostrzec samego siebie!","reply");
+    if (warningUser.id === bot.user.id) return React.sendReact(false,message,"Nie możesz wykonywać tej operacji na mnie","send");
+    if (!reason) return React.sendReact(false,message,"Musisz podać powód!","reply");
+    if (warningUser.hasPermission("KICK_MEMBERS")) return React.sendReact(false,message,"Ta osobanie może zostać ostrzeżona!","reply");
 
     if (!warns[warningUser.id]) warns[warningUser.id] = {
         warnings: 0
@@ -24,22 +24,22 @@ module.exports.run = async (bot,message,args,prefix) => {
     fs.writeFile("./database/warnings.json",JSON.stringify(warns), (err) => {if(err) console.error(err);});
 
     let embed = new Discord.RichEmbed()
-        .setAuthor("Warn")
-        .setDescription("Warn a user")
+        .setAuthor("Ostrzeżono")
+        .setDescription("Ostrzeżono urzytkownika")
         .setColor("#ff0000")
         .setThumbnail(warningUser.user.displayAvatarURL)
 
-        .addField("Warned User", `${warningUser} with ID ${warningUser.id}`)
-        .addField("Warned By", `${message.author} with ID ${message.author.id}`)    
-        .addField("Number of Warning", warns[warningUser.id].warnings )                                  
-        .addField("Reason", reason)        
-        .addField("Warned at", message.createdAt)
-        .addField("Channel", message.channel);
+        .addField("Ostrzeżono", `${warningUser} z ID ${warningUser.id}`)
+        .addField("Ostrzeżono przez", `${message.author} z ID ${message.author.id}`)    
+        .addField("Liczba ostrzeżeń", warns[warningUser.id].warnings )                                  
+        .addField("Powód", reason)        
+        .addField("Ostrzeżono o", message.createdAt)
+        .addField("Kanał", message.channel);
 
     let incidentsChannel = message.guild.channels.find('name','incidents');
     incidentsChannel.send(embed);
 
-    React.sendReact(true,message,"User warned!","send");
+    React.sendReact(true,message,"Ostrzeżono urzytkownika!","send");
 
     if (warns[warningUser.id].warnings === 3) {
         let role = message.guild.roles.find(r => r.name === "Muted");
@@ -64,14 +64,14 @@ module.exports.run = async (bot,message,args,prefix) => {
         }
 
         let embed = new Discord.RichEmbed()
-            .setAuthor("Auto mute")
-            .setDescription("Mute a user")
+            .setAuthor("Automatyczne wyciszenie")
+            .setDescription("Wyciszenie urzytkownika")
             .setColor("#ff0000")
             .setThumbnail(warningUser.user.displayAvatarURL)
     
-            .addField("Muted User", `${warningUser} with ID ${warningUser.id}`)
-            .addField("Mute time", `${muteTime} min`)                
-            .addField("Reason", 'User have got 3 warnings from administrators');
+            .addField("Wyciszono", `${warningUser} with ID ${warningUser.id}`)
+            .addField("Czas wyciszenia", `${muteTime} min`)                
+            .addField("Powód", 'Urzytkownik dostął 3 ostrzeżenia od Administratorów');
     
         if (warningUser.roles.has(role.id)) return;
 
@@ -89,22 +89,22 @@ module.exports.run = async (bot,message,args,prefix) => {
     }
     if (warns[warningUser.id].warnings === 5) {
         let embed = new Discord.RichEmbed()
-            .setAuthor("Ban")
-            .setDescription("ban a user")
+            .setAuthor("Zbanowano")
+            .setDescription("Zbanowano urzytkownika")
             .setColor("#ff0000")
             .setThumbnail(warningUser.user.displayAvatarURL)
 
-            .addField("Banned User", `${warningUser} with ID ${warningUser.id}`)
-            .addField("Reason", 'User have got 5 warnings from administrators');
+            .addField("Zbanowano", `${warningUser} z ID ${warningUser.id}`)
+            .addField("Powód", 'Urzytkownik dostał 5 ostrzeżeń od Administratorów');
 
         incidentsChannel.send(embed);
         
-        message.guild.member(warningUser).ban('User have got 5 warnings from administrators');
+        message.guild.member(warningUser).ban('Urzytkownik dostał 5 ostrzeżeń od Administratorów');
     }
     return;
 }
 module.exports.config = {
     name: ["warn"],
-    args:"@user <reason>",
-    description: "Warn a user(3 warns - mute on 15 min, 5 warns - ban)"
+    args:"@oznaczenia <powód>",
+    description: "Ostrzec urzytkownika(3 ostrzeżenia - wuciszenia na 15 min, 5 ostrzeżeń - ban)"
 }

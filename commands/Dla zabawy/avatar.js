@@ -1,7 +1,7 @@
 const React = require('../../modules/reacting.js');
 
 module.exports.run = async (bot,message,args,prefix) => {
-    let msg = await message.channel.send("Loading avatar...");
+    let msg = await message.channel.send("Ładowanie awataru...");
 
     await message.channel.send({files: [
         {
@@ -19,5 +19,5 @@ module.exports.run = async (bot,message,args,prefix) => {
 module.exports.config = {
     name: ["avatar"],
     args:"",
-    description: "See how beautiful your avatar is!"
+    description: "Zobacz swój awatar!"
 }
