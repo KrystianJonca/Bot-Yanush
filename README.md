@@ -1,40 +1,42 @@
 # Bot Yanush
-**Simple Discord Bot written in Discordjs**
+**Discordowy Bot napisany w Discord.js przy urzyciu Nodejs**
 
 ![Bot avatar](https://raw.githubusercontent.com/KrystianJonca/Bot-Yanush/master/assets/avatar.png) 
 
-**Invite:** http://bit.ly/Yinvite
-## Configurate server
-1. Create channels required for proper operation of the bot. Channels names:
+
+## Konfiguracja servera
+1. Stwórz wymagane kanały o następujących nazwach:
  -incidents
  -reports
  -bot
  
-2. Create category for forum system one of the channels in this category must be named
+2. Stwórz kateogrię dla systemu forum. Jeden z kanałów w tej kategori musi nazywać się:
  -topics
+ 
+**Po wykonaniu tych kroków możesz zaprosić bota:** http://bit.ly/Yinvite
 
-**An example of the server structure:**<br />
--bot(category)
- - bot(channel for using commands)
- - incidents(private channel for admins)
- - reports(private channel for admins)
+**Przykładowa struktura serwera:**<br />
+-bot(kategoria)
+ - bot(kanał do urzywania komend)
+ - incidents(prywatny kanał dla adminów)
+ - reports(prywatny kanał dla adminów)
 
--forum(category)
- - topics
- - topics-1
- - topics-2
+-forum(kategoria)
+ - topics(kanał do zakładania tematów)
+ - topics-1(kanał do zakładania tematów)
+ - topics-2(kanał do zakładania tematów)
  
 
 ## Info
-- **Bot name:** Bot Yanush
-- **Default_prefix**: "Y!"(Customizable)
+- **Nazwa bota:** Bot Yanush
+- **Domyślny prefix**: "Y!"(Możliwość zmiany)
 
-## Features
+## Cechy
 - Auto spam detector
 - Auto writing with caps lock detector
 - Modern command handler system 
 - Automatically **help** command updating
-- Reacting on messages when command is execution
+- Reagowanie na wiadomość podczas wykonania komendy
 - Large config capabilities
 - Logs system
 - Modern mutes system
