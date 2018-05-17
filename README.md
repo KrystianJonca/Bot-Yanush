@@ -16,12 +16,12 @@
 **Po wykonaniu tych kroków możesz zaprosić bota:** http://bit.ly/Yinvite
 
 **Przykładowa struktura serwera:**<br />
--bot(kategoria)
+- bot(kategoria)
  - bot(kanał do urzywania komend)
  - incidents(prywatny kanał dla adminów)
  - reports(prywatny kanał dla adminów)
 
--forum(kategoria)
+- forum(kategoria)
  - topics(kanał do zakładania tematów)
  - topics-1(kanał do zakładania tematów)
  - topics-2(kanał do zakładania tematów)
