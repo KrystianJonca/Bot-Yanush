@@ -42,6 +42,7 @@
 - Randomowa aktywność Bota
 
 ## W trakcie
+- Nowoczesna baza danych
 - Bot Yanush Dev Discord server
 
 ## TODO
