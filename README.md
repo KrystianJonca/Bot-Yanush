@@ -31,8 +31,9 @@
 - **Default_prefix**: "Y!"(Customizable)
 
 ## Features
-- Auto spam detector
-- Auto writing with caps lock detector
+- Spam detector
+- Writing with caps lock detector
+- Sending invitations detector
 - Modern command handler system 
 - Automatically **help** command updating
 - Reacting on messages when command is execution
