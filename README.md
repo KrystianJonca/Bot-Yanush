@@ -1,5 +1,5 @@
 # Bot Yanush
-**Discordowy Bot napisany w Discord.js przy urzyciu Nodejs**
+**Discordowy Bot napisany w Discord.js przy uźyciu Nodejs**
 
 ![Bot avatar](https://raw.githubusercontent.com/KrystianJonca/Bot-Yanush/master/assets/avatar.png) 
 
