@@ -4,7 +4,7 @@
 ![Bot avatar](https://raw.githubusercontent.com/KrystianJonca/Bot-Yanush/master/assets/avatar.png) 
 
 **Invite:** http://bit.ly/Yinvite<br />
-**Website:**http://bit.ly/Ywebsite
+**Website:** http://bit.ly/Ywebsite
 
 ## Configurate server
 1. Create channels required for proper operation of the bot. Channels names:
