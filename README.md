@@ -4,6 +4,8 @@
 ![Bot avatar](https://raw.githubusercontent.com/KrystianJonca/Bot-Yanush/master/assets/avatar.png) 
 
 **Invite:** http://bit.ly/Yinvite
+**Website:**http://bit.ly/Ywebsite
+
 ## Configurate server
 1. Create channels required for proper operation of the bot. Channels names:
  -incidents
@@ -43,9 +45,7 @@
 
 ## In progress
 - Bot Yanush Dev Discord server
-
-## TODO
-- Bot website
+- Dashboard in Bot website
 
 ## Commands
 ***Config commands:*** <br />
