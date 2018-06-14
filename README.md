@@ -6,7 +6,7 @@
 **Invite:** http://bit.ly/Yinvite<br />
 **Website:** http://bit.ly/Ywebsite
 
-## :fa-sliders: Configurate server
+## Configurate server
 1. Create channels required for proper operation of the bot. Channels names:
  -incidents
  -reports
@@ -28,11 +28,11 @@
   - topics-2<br />
  
 
-## :fa-info: Info
+## Info
 - **Bot name:** Bot Yanush
 - **Default_prefix**: "Y!"(Customizable)
 
-## :fa-rocket: Features
+## Features
 - Spam detector
 - Writing with caps lock detector
 - Sending invitations detector
@@ -43,11 +43,11 @@
 - Logs system
 - Modern mutes system
 
-## :fa-check: In progress
+## In progress
 - Bot Yanush Dev Discord server
 - Dashboard in Bot website
 
-## :fa-align-left: Commands
+## Commands
 ***Config commands:*** <br />
 **1:** Y!ai (on/off) | **Description:**  Auto spam mute and auto writing with caps lock alert functions<br />
 **2:** Y!prefix (prefix to set) | **Description:**  Set prefix for your own server <br />
