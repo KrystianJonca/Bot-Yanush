@@ -33,7 +33,7 @@
 - **Bot name:** Bot Yanush
 - **Default_prefix**: "Y!"(Customizable)
 
-## :fire: Features
+## :rocket: Features
 - Spam detector
 - Writing with caps lock detector
 - Sending invitations detector
