@@ -1,4 +1,4 @@
-# Bot Yanush
+# :sunglasses: Bot Yanush
 **Simple Discord Bot written in Discordjs**
 
 ![Bot avatar](https://raw.githubusercontent.com/KrystianJonca/Bot-Yanush/master/assets/avatar.png) 
