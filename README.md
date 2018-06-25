@@ -1,5 +1,5 @@
 # :sunglasses: Bot Yanush
-**Modern Discord Bot written in Discordjs**
+**Modern Discord Bot written in Discord.js**
 
 ![Bot avatar](https://raw.githubusercontent.com/KrystianJonca/Bot-Yanush/master/assets/avatar.png) 
 
