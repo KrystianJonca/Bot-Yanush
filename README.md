@@ -27,7 +27,6 @@
   - topics<br />
   - topics-1<br />
   - topics-2<br />
- 
 
 ## :page_facing_up: Info
 - **Bot name:** Bot Yanush
