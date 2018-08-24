@@ -1,6 +1,6 @@
 const React = require('../../modules/reacting.js');
 
-module.exports.run = async (bot,message,args) => {
+module.exports.run = async (bot,message,args,prefix,con) => {
     let roll = Math.floor(Math.random()*6)+1;
 
     React.sendReact(true,message,`You rolled a ${roll}`,"reply");

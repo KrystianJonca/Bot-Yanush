@@ -1,6 +1,6 @@
 const React = require('../../modules/reacting.js');
 
-module.exports.run = async (bot,message,args) => {
+module.exports.run = async (bot,message,args,prefix,con) => {
     let toSay = args.join(' ');
 
     if (!toSay) return React.sendReact(false,message,"You must give me a message to say!","reply");

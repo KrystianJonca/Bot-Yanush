@@ -6,3 +6,5 @@ archiveCommands/
 
 # Token
 config/token.json
+
+*.sql

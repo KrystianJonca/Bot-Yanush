@@ -1,6 +1,6 @@
 const React = require("../../modules/reacting.js");
 
-module.exports.run = async (bot,message,args,prefix) => {
+module.exports.run = async (bot,message,args,prefix,con) => {
     
     let cpuTemp = getRandomInt(30,80);
     let gpuTemp = getRandomInt(20,70);

@@ -2,24 +2,22 @@ const Discord = require('discord.js');
 const fs = require("fs");
 const React = require("../../modules/reacting.js");
 
-module.exports.run = async (bot,message,args,prefix) => {
-    let boolToSet = (args[0]=="on") ? true : false;
+module.exports.run = async (bot,message,args,prefix,con) => {
+    let boolToSet = (args[0]=="on") ? 1 : 0;
     
     if (!message.member.hasPermission("MANAGE_SERVER")) return React.sendReact(false,message,"You don't have require permission!","reply");
     if (args[0] !== "on" &&  args[0] !== "off") return React.sendReact(false,message,"You must turn on/off auto spam mute and auto caps lock alert function","reply");
 
-    let aiSettings = JSON.parse(fs.readFileSync("./database/ai-settings.json","utf8"));
+    con.query(`SELECT * FROM gilds WHERE sid = '${message.guild.id}'`,async (err,rows) => {
+        if(err) throw err; 
     
-    aiSettings[message.guild.id] = {
-        ai: boolToSet
-    };
+        let sql = `UPDATE gilds SET ai = '${boolToSet}' WHERE sid = '${message.guild.id}'`;
 
-    fs.writeFileSync("./database/ai-settings.json", JSON.stringify(aiSettings), (err) => {
-        if (err) console.error(err);
+        con.query(sql)
     });
 
     let embed = new Discord.RichEmbed()
-        .setTitle("AI functions - Auto spam mute and auto caps lock alert")
+        .setTitle("AI functions")
         .setDescription(`Turn ${boolToSet ? "on" : "off"}`)
         .setColor("#1E88E5");
 

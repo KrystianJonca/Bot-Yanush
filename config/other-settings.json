@@ -1,4 +1,8 @@
 {
     "commands_cooldown": 5,
-    "topic_time_to_explain": 5
+    "xp_cooldown": 60,
+    "topic_time_to_explain": 5,
+    "max_prefix_length": 5,
+    "min_xp": 10,
+    "max_xp": 20
 }

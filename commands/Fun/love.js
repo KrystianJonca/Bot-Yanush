@@ -1,6 +1,6 @@
 const React = require('../../modules/reacting.js');
 
-module.exports.run = async (bot,message,args) => {
+module.exports.run = async (bot,message,args,prefix,con) => {
     let loveUser = message.guild.member(message.mentions.users.first() || message.mentions.users.get(args[0]));
     let lovingUser = message.author;
     let lovePercent = Math.floor(Math.random() * 100) + 1; 

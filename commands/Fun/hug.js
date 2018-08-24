@@ -1,6 +1,6 @@
 const React = require('../../modules/reacting.js');
 
-module.exports.run = async (bot,message,args) => {
+module.exports.run = async (bot,message,args,prefix,con) => {
     let hugUser = message.guild.member(message.mentions.users.first() || message.mentions.users.get(args[0]));
     let huggingUser = message.author;
 

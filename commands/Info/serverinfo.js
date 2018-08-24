@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const fs = require("fs");
 const React = require("../../modules/reacting.js");
 
-module.exports.run = async (bot,message,args,prefix) => {
+module.exports.run = async (bot,message,args,prefix,con) => {
     let aiSettings = JSON.parse(fs.readFileSync("./database/ai-settings.json","utf8"));
 
     let embed = new Discord.RichEmbed()
