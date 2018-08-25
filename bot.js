@@ -1,9 +1,11 @@
 const Discord = require('discord.js');
 const mongoose = require('mongoose');
 const mysql = require('mysql');
+const getGuild = require('./getGuild');
 
 const Database = require('./database.js');
 const Commands = require('./commands.js');
+new Commands();
 
 const bot = new Discord.Client();
 
@@ -22,7 +24,13 @@ const remove = require('./events/remove.js');
 
 const Guild = require('./models/guild');
 
-mongoose.connect('mongodb://localhost/yanush');
+const url = 'mongodb://localhost:27017/yanush';
+const opts = {
+  useNewUrlParser: true
+};
+mongoose.connect(url,opts);
+
+mongoose.Promise = global.Promise;
 
 const db = mongoose.connection;
 
@@ -33,25 +41,17 @@ db.once('open', () => {
   console.log('Connected to database!');
 });
 
-const guild = new Guild({
-  serverID: '441574101392424963',
-  ignoredChannels: ['447031390945673216']
-});
-
-guild.save();
-
-
 bot.warns = require('./database/warnings.json');
 bot.mutes = require('./database/mutes.json');
 bot.queues = require('./database/queues.json');
 
 bot.commands = new Discord.Collection();
 
-let Db = new Database(con);
-let cmds = new Commands(bot);
 
-bot.on('ready', () => {
-  ready(bot, con);
+bot.on('ready', async () => {
+//   const Guilds = await getGuild(db);
+// console.log(Guilds);
+  ready(bot, db);
 });
 
 bot.on('message', async message => {
@@ -62,10 +62,10 @@ bot.on('message', async message => {
   automod(bot, message, con);
 });
 bot.on('guildCreate', guild => {
-  create(guild, con);
+  create(guild, db);
 });
 bot.on('guildDelete', guild => {
-  remove(con, guild);
+  remove(guild, db);
 });
 
 bot.on('error', err => {
