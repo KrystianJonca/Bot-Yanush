@@ -1,16 +1,15 @@
 const dateTime = require('node-datetime');
-const React = require("../../modules/reacting.js");
+const React = require('../../modules/reacting.js');
 
-module.exports.run = async (bot,message,args,prefix,con) => {
-    let dt = dateTime.create();
-    let time = dt.format('d-m-Y H:M:S');
+module.exports.run = async (bot, message, args, prefix, db) => {
+  let dt = dateTime.create();
+  let time = dt.format('d-m-Y H:M:S');
 
-    React.sendReact(true,message,time,"reply");
-    return;
-
-}
+  React.sendReact(true, message, time, 'reply');
+  return;
+};
 module.exports.config = {
-    name: ["date","time"],
-    args:"",
-    description: "Get a current date!"
-}   
+  name: ['date', 'time'],
+  args: '',
+  description: 'Get a current date!'
+};

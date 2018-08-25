@@ -18,7 +18,7 @@ module.exports = class Database {
       });
     });
   }
-  static getPlugins(message, con) {
+  static getPlugins(message, db) {
     return new Promise((resolve, reject) => {
       con.query(
         `SELECT * FROM plugins WHERE sid = '${message.guild.id}'`,
@@ -38,7 +38,7 @@ module.exports = class Database {
       );
     });
   }
-  static getPrefix(message, con) {
+  static getPrefix(message, db) {
     return new Promise((resolve, reject) => {
       con.query(
         `SELECT * FROM guilds WHERE sid = '${message.guild.id}'`,
@@ -60,7 +60,7 @@ module.exports = class Database {
     });
   }
 
-  static getCCD(message, con) {
+  static getCCD(message, db) {
     return new Promise((resolve, reject) => {
       con.query(
         `SELECT * FROM guilds WHERE sid = '${message.guild.id}'`,
@@ -81,7 +81,7 @@ module.exports = class Database {
       );
     });
   }
-  static getXPCD(message, con) {
+  static getXPCD(message, db) {
     return new Promise((resolve, reject) => {
       con.query(
         `SELECT * FROM guilds WHERE sid = '${message.guild.id}'`,
@@ -101,7 +101,7 @@ module.exports = class Database {
       );
     });
   }
-  static getAI(message, con) {
+  static getAI(message, db) {
     return new Promise((resolve, reject) => {
       con.query(
         `SELECT * FROM ai WHERE sid = '${message.guild.id}'`,
@@ -122,7 +122,7 @@ module.exports = class Database {
       );
     });
   }
-  static getLogChannel(guild, con) {
+  static getLogChannel(guild, db) {
     return new Promise((resolve, reject) => {
       con.query(
         `SELECT * FROM guilds WHERE sid = '${guild.id}'`,
@@ -141,7 +141,7 @@ module.exports = class Database {
       );
     });
   }
-  static getIgnoredChannels(guild, con) {
+  static getIgnoredChannels(guild, db) {
     return new Promise((resolve, reject) => {
       con.query(
         `SELECT * FROM ignoredChannels WHERE sid = '${guild.id}'`,
@@ -161,7 +161,7 @@ module.exports = class Database {
       );
     });
   }
-  static getIgnoredRoles(guild, con) {
+  static getIgnoredRoles(guild, db) {
     return new Promise((resolve, reject) => {
       con.query(
         `SELECT * FROM ignoredRoles WHERE sid = '${guild.id}'`,
@@ -181,7 +181,7 @@ module.exports = class Database {
       );
     });
   }
-  static addXP(message, con) {
+  static addXP(message, db) {
     con.query(
       `SELECT * FROM xp WHERE uid = '${message.author.id}' AND sid = '${
         message.guild.id
@@ -216,7 +216,7 @@ module.exports = class Database {
       }
     );
   }
-  static removeXP(uID, sID, con) {
+  static removeXP(uID, sID, db) {
     con.query(
       `SELECT * FROM xp WHERE uid = '${uID}' AND sid = '${sID}'`,
       (err, rows) => {

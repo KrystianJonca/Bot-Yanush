@@ -1,15 +1,21 @@
 const React = require('../../modules/reacting.js');
 
-module.exports.run = async (bot,message,args,prefix,con) => {
-    let toSay = args.join(' ');
+module.exports.run = async (bot, message, args, prefix, db) => {
+  let toSay = args.join(' ');
 
-    if (!toSay) return React.sendReact(false,message,"You must give me a message to say!","reply");
+  if (!toSay)
+    return React.sendReact(
+      false,
+      message,
+      'You must give me a message to say!',
+      'reply'
+    );
 
-    React.sendReact(true,message,toSay,"send");
-    return;
-}
+  React.sendReact(true, message, toSay, 'send');
+  return;
+};
 module.exports.config = {
-    name: ["say"],
-    args:"<text to say>",
-    description: "Give me message to say"
-}   
+  name: ['say'],
+  args: '<text to say>',
+  description: 'Give me message to say'
+};

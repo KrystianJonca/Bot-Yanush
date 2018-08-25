@@ -6,7 +6,7 @@ const guildSchema = new Schema({
   // General
   prefix: { type:String, default: 'Y!' },
   logChannelID: { type:String, default: null },
-  commandCooldown: { type: Number, default:5 },
+  commantsCooldown: { type: Number, default:5 },
   xpCooldown: { type: Number, default:60 },
   // Automod
   caps: { type:Boolean, default: false },
@@ -23,9 +23,9 @@ const guildSchema = new Schema({
   music: { type:Boolean, default: true },
   xp: { type:Boolean, default: true },
   // Twitch notifications
-  channelID: { type:String, default: null },
   notifications:[
     {
+      channelID: String,
       username: String,
       message: String
     }
@@ -42,7 +42,9 @@ const guildSchema = new Schema({
   commants:[
     {
       name: [ String ],
-      message: String
+      message: String,
+      description: String,
+      reply: Boolean
     }
   ]
 });

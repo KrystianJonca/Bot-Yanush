@@ -1,14 +1,14 @@
 const React = require('../../modules/reacting.js');
 
-module.exports.run = async (bot,message,args,prefix,con) => {
-    let roll = Math.floor(Math.random()*6)+1;
+module.exports.run = async (bot, message, args, prefix, db) => {
+  let roll = Math.floor(Math.random() * 6) + 1;
 
-    React.sendReact(true,message,`You rolled a ${roll}`,"reply");
+  React.sendReact(true, message, `You rolled a ${roll}`, 'reply');
 
-    return;
-}
+  return;
+};
 module.exports.config = {
-    name: ["roll","dice"],
-    args:"",
-    description: "Roll a random number between 0-6!"
-}
+  name: ['roll', 'dice'],
+  args: '',
+  description: 'Roll a random number between 0-6!'
+};

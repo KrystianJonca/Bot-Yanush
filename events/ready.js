@@ -4,6 +4,8 @@ const fs = require('fs');
 const botSettings = require('../config/bot-settings.json');
 const getGuild = require('../getGuild');
 
+const CLIENT_ID = 'h9py7otma771wm51qvbvd8xnaiiv87'; //process.env.CLIENT_ID
+
 module.exports = async (bot, db) => {
   bot.user.setUsername(botSettings.bot_username);
 
@@ -44,7 +46,7 @@ module.exports = async (bot, db) => {
       let guild = bot.guilds.get(guildId);
       let member = guild.members.get(i);
 
-      const Guild = await getGuild(guildId,db);
+      const Guild = await getGuild(guildId, db);
 
       let role = guild.roles.find(r => r.name === 'Muted');
       if (!role) continue;
@@ -75,15 +77,16 @@ module.exports = async (bot, db) => {
       }
     }
   }, 60000); // 1 min
+
+
   bot.setInterval(async () => {
+    const Guilds = await getGuild(null, db);
 
-    con.query('SELECT * FROM twitch', async (err, rows) => {
-      if (err) throw err;
+    for (i in Guilds) {
+      const notifications = Guilds[i].notifications;
 
-      const CLIENT_ID = 'h9py7otma771wm51qvbvd8xnaiiv87'; //process.env.CLIENT_ID
-
-      for (i in rows) {
-        let username = rows[i].username;
+      for (i in notifications) {
+        let username = notifications[i].username;
 
         const streamRes = await fetch(
           `https://api.twitch.tv/kraken/streams/${username}`,
@@ -99,10 +102,11 @@ module.exports = async (bot, db) => {
         if (!stream.stream) continue;
         if (new Date() - new Date(stream.stream.created_at) > 310000) continue;
 
-        let channelId = rows[i].chid;
+        let channelId = notifications[i].channelID;
         let channel = bot.channels.get(channelId);
 
-        let message = rows[i].message;
+        let message = notifications[i].message;
+
         let msg = message
           .replace('{{ streamer }}', stream.stream.channel.display_name)
           .replace('{{ link }}', `https://www.twitch.tv/${username}`);
@@ -123,6 +127,6 @@ module.exports = async (bot, db) => {
 
         channel.send(msg, embed);
       }
-    });
-  }, 300000); // 5 min
+    }
+  }, 300000); // 5 min300000
 };

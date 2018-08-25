@@ -1,11 +1,8 @@
 const Discord = require('discord.js');
 const mongoose = require('mongoose');
 const mysql = require('mysql');
-const getGuild = require('./getGuild');
 
-const Database = require('./database.js');
 const Commands = require('./commands.js');
-new Commands();
 
 const bot = new Discord.Client();
 
@@ -41,25 +38,35 @@ db.once('open', () => {
   console.log('Connected to database!');
 });
 
+// const server = new Guild({
+//   serverID:'441574101392424963',
+//   notifications:[{
+//     channelID:'441574101392424965',
+//     username:'ewroon',
+//     message:'Hi @everyone, {{ streamer }} is now live on {{ link }}. Go check it out!'
+//   }]
+// })
+// server.save();
 bot.warns = require('./database/warnings.json');
 bot.mutes = require('./database/mutes.json');
 bot.queues = require('./database/queues.json');
 
 bot.commands = new Discord.Collection();
+bot.customCommands = new Discord.Collection();
 
+
+new Commands(bot,db);
 
 bot.on('ready', async () => {
-//   const Guilds = await getGuild(db);
-// console.log(Guilds);
   ready(bot, db);
 });
 
 bot.on('message', async message => {
-  msg(bot, message, con);
+  //msg(bot, message, db);
 });
 //automod section
 bot.on('message', async message => {
-  automod(bot, message, con);
+  automod(bot, message, db);
 });
 bot.on('guildCreate', guild => {
   create(guild, db);
