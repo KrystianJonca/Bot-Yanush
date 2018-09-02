@@ -86,6 +86,7 @@ module.exports = async (bot, db) => {
       const notifications = Guilds[i].notifications;
 
       for (i in notifications) {
+        if(!notifications[i].enabled) continue;
         let username = notifications[i].username;
 
         const streamRes = await fetch(

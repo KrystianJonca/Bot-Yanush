@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const React = require('../../modules/reacting.js');
 
-module.exports.run = async (bot, message, args, prefix, db) => {
+module.exports.run = async (bot, message, args, prefix, Guild) => {
   let target =
     message.mentions.users.first() ||
     message.guild.members.get(args[0]) ||

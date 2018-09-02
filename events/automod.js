@@ -3,10 +3,11 @@ const fs = require('fs');
 const getGuild = require('../getGuild');
 
 module.exports = async (bot, message, db) => {
-  const Guild = await getGuild(message.guild.id, db);
-
   if (message.author.bot) return;
   if (message.channel.type === 'dm') return;
+
+  const Guild = await getGuild(message.guild.id, db);
+
   if (message.member.hasPermission('MANAGE_MESSAGES')) return;
   if (message.channel.id == Guild.ignoredChannels.join(' || ')) return;
 

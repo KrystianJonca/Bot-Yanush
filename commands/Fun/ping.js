@@ -1,6 +1,6 @@
 const React = require('../../modules/reacting.js');
 
-module.exports.run = async (bot, message, args, prefix, db) => {
+module.exports.run = async (bot, message, args, prefix, Guild) => {
   React.sendReact(true, message, 'Pong!', 'reply');
   return;
 };

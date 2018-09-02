@@ -1,6 +1,6 @@
 const reactEmotes = require('../config/react-emotes.json');
 
-module.exports.sendReact = (react, message, dbtent, type, time) => {
+module.exports.sendReact = (react, message, content, type, time) => {
   message.react(
     react ? reactEmotes.command_execution : reactEmotes.command_not_execution
   );

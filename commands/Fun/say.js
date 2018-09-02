@@ -1,6 +1,6 @@
 const React = require('../../modules/reacting.js');
 
-module.exports.run = async (bot, message, args, prefix, db) => {
+module.exports.run = async (bot, message, args, prefix, Guild) => {
   let toSay = args.join(' ');
 
   if (!toSay)

@@ -6,7 +6,7 @@ const guildSchema = new Schema({
   // General
   prefix: { type:String, default: 'Y!' },
   logChannelID: { type:String, default: null },
-  commantsCooldown: { type: Number, default:5 },
+  commandsCooldown: { type: Number, default:5 },
   xpCooldown: { type: Number, default:60 },
   // Automod
   caps: { type:Boolean, default: false },
@@ -22,12 +22,32 @@ const guildSchema = new Schema({
   useful: { type:Boolean, default: true },
   music: { type:Boolean, default: true },
   xp: { type:Boolean, default: true },
+  // Custom Join/DM/Leave Messages or Role give
+  join: {
+    channelID: String,
+    message: String,
+    enabled: Boolean
+  },
+  dm: {
+    message: String,
+    enabled: Boolean
+  },
+  leave: {
+    channelID: String,
+    message: String,
+    enabled: Boolean
+  },
+  role: {
+    roleID: String,
+    enabled: Boolean
+  },
   // Twitch notifications
   notifications:[
     {
       channelID: String,
       username: String,
-      message: String
+      message: String,
+      enabled: Boolean
     }
   ],
   // XP System
@@ -38,13 +58,14 @@ const guildSchema = new Schema({
       lvl: { type:Number, default: 1 }
     }
   ],
-  // Custom commants
-  commants:[
+  // Custom commands
+  commands:[
     {
-      name: [ String ],
+      name: String,
       message: String,
       description: String,
-      reply: Boolean
+      reply: Boolean,
+      enabled: Boolean
     }
   ]
 });

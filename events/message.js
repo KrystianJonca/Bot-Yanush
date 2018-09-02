@@ -2,6 +2,7 @@
 const React = require('../modules/reacting.js');
 const getGuild = require('../getGuild');
 const otherSettings = require("../config/other-settings.json");
+//const Guild = require('../models/guild');
 
 module.exports = async (bot, message, db) => {
   if (message.author.bot) return;
@@ -15,14 +16,13 @@ module.exports = async (bot, message, db) => {
 
   const Guild = await getGuild(message.guild.id,db);
 
-  const cooldownSec = Guild.commantsCooldown;
+  const cooldownSec = Guild.commandsCooldown;
   const xpCooldownSec = Guild.xpCooldown;
-
   const cooldown = new Set();
   const xpCooldown = new Set();
 
   if (Guild.xp) {
-    if (!xpCooldown.has(sender.id)) {
+   if (!xpCooldown.has(sender.id)) {
       addXP(message, db);
     }
     xpCooldown.add(sender.id);
@@ -31,8 +31,11 @@ module.exports = async (bot, message, db) => {
   let prefix = Guild.prefix;
   let logChannel = Guild.logChannelID;
 
-  let cmd = bot.commands.get(command.slice(prefix.length).toLowerCase());
-  let plugin = eval(`Guild.${cmd.config.group.toLowerCase()}`);
+  let cmd = bot.commands.get(command.slice(prefix.length).toLowerCase())
+  || bot.customCommands.get(`${command.slice(prefix.length).toLowerCase()}/${message.guild.id}`);
+
+  //let plugin = cmd.config ? eval(`Guild.${cmd.config.group.toLowerCase()}`) : true;
+
   if (!command.startsWith(prefix)) return;
 
   if (args[0] === '--info') {
@@ -52,7 +55,7 @@ module.exports = async (bot, message, db) => {
   }
 
   if (cmd && plugin) {
-    cmd.run(bot, message, args, prefix, db, logChannel);
+    cmd.run(bot, message, args, prefix, Guild, logChannel);
     cooldown.add(sender.id);
   } else {
     message.delete();
@@ -78,24 +81,37 @@ module.exports = async (bot, message, db) => {
   }, xpCooldownSec * 1000);
 };
 
-function addXP(message,db){
+async function addXP(message,db){
   const Guild = await getGuild(message.guild.id,db);
 
   const userXpObject = Guild.usersXP.filter(element => element.userID == message.author.id);
 
-  const lvl = userXpObject.lvl;
-  const newXP = userXpObject.xp + generateXp();
+  if(!userXpObject[0]){
+    db.collection('guilds').findOneAndUpdate({
+      serverID: message.guild.id
+    },{ $push:{
+      usersXP:{
+        userID: message.author.id,
+        xp: generateXp(),
+        lvl: 1
+      }
+    }})
+    return;
+  }
+  const lvl = userXpObject[0].lvl;
+  const newXP = userXpObject[0].xp + generateXp();
 
   if(newXP >= lvl * 200)
     message.reply(`You just advanced to level ${lvl + 1}!`).then(msg => msg.delete(10000));
 
-  db.findOneAndUpdate({
+
+  db.collection('guilds').findOneAndUpdate({
     serverID: message.guild.id,
     'usersXP.userID': message.author.id
-  },{
+  },{ $set:{
     'usersXP.$.xp': newXP,
     'usersXP.$.lvl': newXP >= lvl*200 ? lvl+1 : lvl
-  })
+  }})
 }
 function generateXp() {
   let min = otherSettings.min_xp;

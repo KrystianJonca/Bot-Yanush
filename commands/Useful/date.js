@@ -1,7 +1,7 @@
 const dateTime = require('node-datetime');
 const React = require('../../modules/reacting.js');
 
-module.exports.run = async (bot, message, args, prefix, db) => {
+module.exports.run = async (bot, message, args, prefix, Guild) => {
   let dt = dateTime.create();
   let time = dt.format('d-m-Y H:M:S');
 

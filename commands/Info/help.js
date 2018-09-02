@@ -1,21 +1,12 @@
 const fs = require('fs');
 const characterLimit = 2000;
 const React = require('../../modules/reacting.js');
-const getGuild = require('../getGuild');
+const getGuild = require('../../getGuild');
 
-module.exports.run = async (bot, message, args, prefix, db) => {
+module.exports.run = async (bot, message, args, prefix, Guild) => {
   React.sendReact(true,message,'I have just sent you a message with available commands!','reply');
 
   let helpMsg ='Hello! I have a list of available commands for you that you asked for :slight_smile: :wink: \n';
-
-  const Guild = getGuild(message.guild.id,db);
-  if(Guild.commants){
-    helpMsg += '***Custom commands:*** \n';
-
-    for(i in Guild.commants){
-      helpMsg += `${prefix}${Guild.commants[i].join('/')}\` | **Description:**  ${Guild.commants[i].description} \n`
-    }
-  }
 
   fs.readdir('./commands/', (err, folders) => {
     if (err) console.error(err);
@@ -50,6 +41,14 @@ module.exports.run = async (bot, message, args, prefix, db) => {
       });
     });
   });
+  if(Guild.commands){
+    helpMsg += '***Custom commands:*** \n';
+
+    Guild.commands.forEach((command,i) => {
+      if(command.enabled)
+        helpMsg += `**${i + 1}:** \`${prefix}${command.name}\` | **Description:**  ${command.description}\n`;
+    })
+  }
   return;
 };
 module.exports.config = {

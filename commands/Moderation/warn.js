@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const React = require('../../modules/reacting.js');
 const fs = require('fs');
 
-module.exports.run = async (bot, message, args, prefix, db, logChannel) => {
+module.exports.run = async (bot, message, args, prefix, Guild, logChannel) => {
   if (!message.member.hasPermission('ADMINISTRATOR'))
     return React.sendReact(
       false,

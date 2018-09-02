@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const React = require('../../modules/reacting.js');
 const speedTest = require('speedtest-net');
 
-module.exports.run = async (bot, message, args, prefix, db) => {
+module.exports.run = async (bot, message, args, prefix, Guild) => {
   let msg = await message.channel.send('Testing... Please wait');
 
   const test = speedTest({ maxTime: 5000 });

@@ -1,58 +1,36 @@
 const Discord = require('discord.js');
 const React = require('../../modules/reacting.js');
 
-module.exports.run = async (bot, message, args, prefix, db) => {
+module.exports.run = async (bot, message, args, prefix, Guild) => {
   let target =
     message.mentions.users.first() ||
     message.guild.members.get(args[0]) ||
     message.author;
 
-  con.query(
-    `SELECT * FROM xp WHERE uid = '${target.id}' AND sid = '${
-      message.guild.id
-    }' ORDER BY xp DESC`,
-    async (err, rows) => {
-      if (err) throw err;
-
-      if (!rows[0])
-        React.sendReact(false, message, 'This user has no XP', 'send');
-
-      let xp = rows[0].xp;
-      let lvl = rows[0].lvl;
-
-      let rank;
-      let rankLength;
-
-      con.query(
-        `SELECT COUNT(1) as r FROM xp WHERE xp >= ${xp}`,
-        (err, rows) => {
-          if (err) throw err;
-
-          rank = rows[0].r;
-        }
-      );
-      con.query(
-        `SELECT * FROM xp WHERE sid = '${message.guild.id}'`,
-        (err, rows) => {
-          if (err) throw err;
-
-          rankLength = rows.length;
-
-          let embed = new Discord.RichEmbed()
-            .setAuthor(`${target.username} XP and LVL`)
-            .setThumbnail(target.displayAvatarURL)
-            .setColor('#039BE5')
-
-            .addField('Rank', `${rank}/${rankLength}`)
-            .addField('XP', `${xp}/${lvl * 200}(to next lvl)`)
-            .addField('LVL', `${lvl}`);
-
-          React.sendReact(true, message, embed, 'send');
-          return;
-        }
-      );
-    }
+  const targetXPObject = Guild.usersXP.find(
+    element => element.userID == target.id
   );
+  if (!targetXPObject) React.sendReact(false, message, 'User has no XP', 'send');
+
+  let xp = targetXPObject.xp;
+  let lvl = targetXPObject.lvl;
+
+  let rank = Guild.usersXP.findIndex(
+    element => element.userID == target.id
+  )+1;
+  let rankLength = Guild.usersXP.length;
+
+  let embed = new Discord.RichEmbed()
+    .setAuthor(`${target.username} XP and LVL`)
+    .setThumbnail(target.displayAvatarURL)
+    .setColor('#039BE5')
+
+    .addField('Rank', `${rank}/${rankLength}`)
+    .addField('XP', `${xp}/${lvl * 200}(to next lvl)`)
+    .addField('LVL', `${lvl}`);
+
+  React.sendReact(true, message, embed, 'send');
+  return;
 };
 module.exports.config = {
   name: ['xp'],

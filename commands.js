@@ -1,10 +1,10 @@
 const Discord = require('discord.js');
 const fs = require('fs');
 const React = require('./modules/reacting.js');
-const getGuild = require('../getGuild');
+const getGuild = require('./getGuild');
 
 module.exports = class Commands {
-  async constructor(bot, db) {
+  constructor(bot, db) {
     fs.readdir('./commands/', (err, folders) => {
       if (err) throw err;
 
@@ -31,40 +31,49 @@ module.exports = class Commands {
           });
         });
       });
-      // Custom commants
-      const Guilds = await getGuild(null, db);
-      setInterval(() => {
-        for (i in Guilds) {
-          for (j in Guilds[i].commants) {
-            for (y in Guilds[i].commants[j].name) {
-              bot.customCommats.set(Guilds[i].commants[j].name[y], message => {
-                React.sendReact(
-                  true,
-                  message,
-                  Guilds[i].commants[j].message,
-                  Guilds[i].commants[j].reply ? 'reply' : 'send'
-                );
-              });
-            }
-          }
+      // Custom commands
+      setInterval(async () => {
+        const Guilds = await getGuild(null, db);
+        for (let i in Guilds) {
+          Guilds[i].commands.forEach(command => {
+            bot.customCommands.set(
+              `${command.name}/${Guilds[i].serverID}`,
+              {
+                run: (bot, message) => {
+                  if(!command.enabled) return;
+                  React.sendReact(
+                    true,
+                    message,
+                    command.message,
+                    command.reply ? 'reply' : 'send'
+                  );
+                }
+              }
+            );
+          });
         }
-      }, 300000);
-
-      return bot;
+        console.log('Updated custom commands!');
+      }, 30000); //5min300000
     });
   }
-  async static commandInfo(cmd, message, prefix) {
-    const Guild = await  getGuild(message.guild.id, db);
-    const commant = Guild.commants.filter(element => element.name.toLowerCase() === cmd);
+  static commandInfo(cmd, message, prefix) {
+    const Guild = getGuild(message.guild.id, db);
+    const commant = Guild.commands.filter(
+      element => element.name.toLowerCase() === cmd
+    );
     if (commant) {
       let embed = new Discord.RichEmbed()
         .setAuthor('Command')
-        .setDescription(`\`${commant.name.join('/')}\`This command must starts with \`${prefix}\``)
+        .setDescription(
+          `\`${commant.name.join(
+            '/'
+          )}\`This command must starts with \`${prefix}\``
+        )
         .setColor('#90CAF9')
 
-        .addField('Usage',`\`${prefix}${commant.name.join('/')}\``)
+        .addField('Usage', `\`${prefix}${commant.name.join('/')}\``)
         .addField('Description', `${commant.description}`)
-        .addField('Group', `Custom commants`);
+        .addField('Group', `Custom commands`);
 
       message.channel.send(embed);
     }
@@ -90,10 +99,19 @@ module.exports = class Commands {
 
               let embed = new Discord.RichEmbed()
                 .setAuthor('Command')
-                .setDescription(`\`${cmds.config.name.join('/')}\`This command must starts with \`${prefix}\``)
+                .setDescription(
+                  `\`${cmds.config.name.join(
+                    '/'
+                  )}\`This command must starts with \`${prefix}\``
+                )
                 .setColor('#90CAF9')
 
-                .addField('Usage',`\`${prefix}${cmds.config.name.join('/')} ${cmds.config.args}\``)
+                .addField(
+                  'Usage',
+                  `\`${prefix}${cmds.config.name.join('/')} ${
+                    cmds.config.args
+                  }\``
+                )
                 .addField('Description', `${cmds.config.description}`)
                 .addField('Group', `${folder}`);
 

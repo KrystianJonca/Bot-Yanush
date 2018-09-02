@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const fs = require('fs');
 const React = require('../../modules/reacting.js');
 
-module.exports.run = async (bot, message, args, prefix, db) => {
+module.exports.run = async (bot, message, args, prefix, Guild) => {
   let aiSettings = JSON.parse(
     fs.readFileSync('./database/ai-settings.json', 'utf8')
   );
